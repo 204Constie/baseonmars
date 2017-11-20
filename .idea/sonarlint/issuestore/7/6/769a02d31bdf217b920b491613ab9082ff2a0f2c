@@ -1,0 +1,29 @@
+
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¸È÷Çÿÿÿÿÿ8¿á‰ý+
+¦squid:S1862"„This branch can not be reached because the condition duplicates a previous condition in the same sequence of "if/else if" statements(¸ââ±ûÿÿÿÿ8†æŠý+
+}squid:S1188"\Reduce this anonymous class number of lines from 27 to at most 20, or make it a named class.(€ëšËûÿÿÿÿ8¢¦ˆŠý+
+¦squid:S1862"„This branch can not be reached because the condition duplicates a previous condition in the same sequence of "if/else if" statements(¸ââ±ûÿÿÿÿ8¼ìŠŠý+
+squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(“–ýþ8ÂÜý¥ý+
+Vsquid:S1161":Add the "@Override" annotation above this method signature(“–ýþ8µÒ‚¦ý+
+Isquid:S1604"(Make this anonymous inner class a lambda(ú‚®”ýÿÿÿÿ8ÂÜý¥ý+
+Dsquid:S1604"(Make this anonymous inner class a lambda(¨Û—ï8õ÷Ï¦ý+
+Dsquid:S1604"(Make this anonymous inner class a lambda(Ø€Ù÷8Õèê¥ý+
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(„åü†ùÿÿÿÿ8«²Í¦ý+
+bsquid:UnusedPrivateMethod"8Remove this unused private "eventListenerInside" method.(ßµ³•8ñºà‰ý+
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¸È÷Çÿÿÿÿÿ8¢¦ˆŠý+
+ssquid:S1450"WRemove the "airlocks" field and declare it as a local variable in the relevant methods.(Ž¡ù¤8ð¨ð‚ý+
+Vsquid:S1161":Add the "@Override" annotation above this method signature(“–ýþ8Õèê¥ý+
+Vsquid:S1161":Add the "@Override" annotation above this method signature(“–ýþ8ÂÜý¥ý+
+}squid:S1188"\Reduce this anonymous class number of lines from 24 to at most 20, or make it a named class.(€ëšËûÿÿÿÿ8÷¢æ‰ý+
+squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(“–ýþ8ãÅú¥ý+
+Ksquid:S00108")Either remove or fill this block of code.(‚¦¡ûûÿÿÿÿ8Ý Ï¦ý+
+V
+squid:S106";Replace this usage of System.out or System.err by a logger.(€ ¦Æ8˜åáŠý+
+csquid:UnusedPrivateMethod"9Remove this unused private "eventListenerOutside" method.(ý‡ïÏ8¥ãˆŠý+
+1squid:S1220""Move this file to a named package.
+Ysquid:S1197"8Move the array designator from the variable to the type.(¡þÏÖøÿÿÿÿ8ïüó‚ý+
+¢squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¡þÏÖøÿÿÿÿ8ïüó‚ý+
+Hsquid:S1068",Remove this unused "airlocks" private field.(Ž¡ù¤8ð¨ð‚ý+
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(„ÿÞ¹8«²Í¦ý+
+gsquid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(‚¦¡ûûÿÿÿÿ8Êøš¨ý+
+[squid:S2274":Remove this call to "wait" or move it into a "while" loop.(é”÷„þÿÿÿÿ8Êøš¨ý+
