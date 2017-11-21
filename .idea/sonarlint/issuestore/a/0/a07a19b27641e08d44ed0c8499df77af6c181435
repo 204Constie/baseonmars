@@ -1,0 +1,24 @@
+
+9squid:S3398"$Move this method into "DelayObject".(°ïÏ±
+Psquid:S1213";Move this constructor to comply with Java Code Conventions.(Êùğ¹
+<squid:S2189""Add an end condition to this loop.(˜ïˆÿÿÿÿÿ
+gsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(—•ŒÉ
+ssquid:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ
+Osquid:S1161":Add the "@Override" annotation above this method signature(“–ış
+Dsquid:S1066"/Merge this if statement with the enclosing one.(Ş»ÇŞ
+1squid:S1220""Move this file to a named package.
+Usquid:S2259"@NullPointerException might be thrown as 'cargo' is nullable here(Í¾ÇÙ
+Fsquid:S1602",Remove useless curly braces around statement(š±§şÿÿÿÿ
+^squid:S2583"DChange this condition so that it does not always evaluate to "false"(ãÊèšşÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+[squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+=squid:S1604"(Make this anonymous inner class a lambda(éÑ¯ì
+Osquid:S1161":Add the "@Override" annotation above this method signature(“–ış
+Bsquid:S1604"(Make this anonymous inner class a lambda(àõªÇüÿÿÿÿ
+[squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+Usquid:S2259"@NullPointerException might be thrown as 'cargo' is nullable here(Í¾ÇÙ
+Bsquid:S1604"(Make this anonymous inner class a lambda(àõªÇüÿÿÿÿ
+>squid:S3398"$Move this method into "DelayObject".(£òòÈşÿÿÿÿ
+9squid:S3398"$Move this method into "DelayObject".(¯Ö•ô
+csquid:S00101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Åúİ
