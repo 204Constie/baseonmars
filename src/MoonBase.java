@@ -8,38 +8,40 @@ import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class MoonBase implements MoonBaseInterface {
-    private List<AirlockInterface> airlocks = new ArrayList<>();
-//    private SortedMap<Integer, ArrayList<AirlockInterface>> airlocks = new TreeMap<Integer, ArrayList<AirlockInterface>>();
-    private SortedMap<Integer, ArrayList<AirlockInterface>> dummyairlocks = new TreeMap<Integer, ArrayList<AirlockInterface>>();
+    private List<AirlockInterface> air = new ArrayList<>();
+//    private SortedMap<Integer, ArrayList<AirlockInterface>> air = new TreeMap<Integer, ArrayList<AirlockInterface>>();
+    private SortedMap<Integer, ArrayList<AirlockInterface>> dummyair = new TreeMap<Integer, ArrayList<AirlockInterface>>();
     private HashMap<AirlockInterface, LinkedBlockingQueue<CargoInterface>> ac = new HashMap<AirlockInterface, LinkedBlockingQueue<CargoInterface>>();
 //    private HashMap<AirlockInterface, Runnable> airthread = new HashMap<AirlockInterface, Runnable>();
     private List<CargoInterface> cargos = Collections.synchronizedList(new ArrayList<CargoInterface>());
+    private Integer jj = new Integer(3);
 
     @Override
     public void setAirlocksConfiguration(List<AirlockInterface> airlocks) {
-        this.airlocks = airlocks;
+        this.air = airlocks;
         PMO_SystemOutRedirect.println("init activeCount: " + java.lang.Thread.activeCount());
+      
 
-
-        for (AirlockInterface airlock: airlocks) {
-//            this.airlocks.putIfAbsent(airlock.getSize(), new ArrayList<AirlockInterface>());
-            this.dummyairlocks.putIfAbsent(airlock.getSize(), new ArrayList<AirlockInterface>());
-//            ArrayList<AirlockInterface> tmpa = this.airlocks.get(airlock.getSize());
-            ArrayList<AirlockInterface> tmpa = this.dummyairlocks.get(airlock.getSize());
+        for (AirlockInterface airlock: air) {
+//            this.air.putIfAbsent(airlock.getSize(), new ArrayList<AirlockInterface>());
+            this.dummyair.putIfAbsent(airlock.getSize(), new ArrayList<AirlockInterface>());
+//            ArrayList<AirlockInterface> tmpa = this.air.get(airlock.getSize());
+            ArrayList<AirlockInterface> tmpa = this.dummyair.get(airlock.getSize());
             tmpa.add(airlock);
             this.ac.put(airlock, new LinkedBlockingQueue<>());
 
 
             Thread th = new Thread(new Runnable() {
                 public void run() {
+                    airlock.setEventsListener(eventListenerInside(ac.get(airlock).peek(), airlock));
 
-
-                    synchronized (airlock) {
+//                    synchronized (airlock) {
 
 //                        PMO_SystemOutRedirect.println("                     " + java.lang.Thread.currentThread().getName());
 //                        PMO_SystemOutRedirect.println("]]]]]]]]]]]]" + java.lang.Thread.activeCount());
 //                        PMO_SystemOutRedirect.println("------///////////////////////\\\\\\\\\\\\\\\\\\\\---"+ac.get(airlock).isEmpty());
                         if(ac.get(airlock).isEmpty()){
+                            synchronized (airlock) {
 
                             try {
                                 PMO_SystemOutRedirect.println("wait on: " + airlock);
@@ -48,7 +50,7 @@ public class MoonBase implements MoonBaseInterface {
                             } catch (InterruptedException e) {
 //                            e.printStackTrace();
                             }
-                            return;
+                            }
                         }
                         PMO_SystemOutRedirect.println("checkvalue " + !ac.get(airlock).isEmpty());
 //                        while (!ac.get(airlock).isEmpty()) {
@@ -56,21 +58,24 @@ public class MoonBase implements MoonBaseInterface {
                             PMO_SystemOutRedirect.println("                     notified" );
                             CargoInterface c = ac.get(airlock).peek();
                             if (c.getDirection() == Direction.INSIDE) {
+
                                 airlock.openExternalAirtightDoors();
+                                synchronized (airlock) {
                                 try {
                                     airlock.wait();
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
-                                }
+                                }}
                             } else {
                                 airlock.openInternalAirtightDoors();
+                                synchronized (airlock) {
                                 try {
                                     airlock.wait();
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
-                                }
+                                }}
                             }
-                            airlock.setEventsListener(eventListenerInside(ac.get(airlock).peek(), airlock));
+
 
 //                            try {
 //
@@ -90,7 +95,7 @@ public class MoonBase implements MoonBaseInterface {
 ////                            e.printStackTrace();
 //                        }
                     }
-                }
+//                }
             });
 //            synchronized (airthread) {
 //                airthread.put(airlock, th);
@@ -107,15 +112,16 @@ public class MoonBase implements MoonBaseInterface {
      public void cargoTransfer(CargoInterface cargo, Direction direction) {
         AirlockInterface airlock = null;
         AirlockInterface minAirlock = null;
-//        PMO_SystemOutRedirect.println("ac: " + airlocks);
-//        Map<Integer, ArrayList<AirlockInterface>> mm = this.airlocks.tailMap(cargo.getSize());
-        Map<Integer, ArrayList<AirlockInterface>> mm = this.dummyairlocks.tailMap(cargo.getSize());
+//        PMO_SystemOutRedirect.println("ac: " + air);
+//        Map<Integer, ArrayList<AirlockInterface>> mm = this.air.tailMap(cargo.getSize());
+        Map<Integer, ArrayList<AirlockInterface>> mm = this.dummyair.tailMap(cargo.getSize());
+
 
         for (Integer i : mm.keySet()) {
             for (AirlockInterface aa : mm.get(i)) {
 
                     if (ac.get(aa).isEmpty()) {
-                        for (AirlockInterface as: airlocks) {
+                        for (AirlockInterface as: air) {
                             if(aa == as){
                                 airlock = as;
                                 break;
@@ -128,7 +134,7 @@ public class MoonBase implements MoonBaseInterface {
                                 PMO_SystemOutRedirect.println("notify on: " + airlock);
                                 PMO_SystemOutRedirect.println("notify value: " + ac.get(airlock).isEmpty());
                                 PMO_SystemOutRedirect.println("activeCount: " + java.lang.Thread.activeCount());
-                                airlock.notify();
+                                airlock.notifyAll();
 //                                return;
                             } catch (InterruptedException e) {
                                 continue;
@@ -158,7 +164,7 @@ public class MoonBase implements MoonBaseInterface {
 //            }
 //
 //        }
-        for (AirlockInterface as: airlocks) {
+        for (AirlockInterface as: air) {
             if(minAirlock == as){
                 airlock = as;
                 break;
@@ -171,7 +177,7 @@ public class MoonBase implements MoonBaseInterface {
                 PMO_SystemOutRedirect.println("notify on: " + airlock);
                 PMO_SystemOutRedirect.println("notify value: " + ac.get(airlock).isEmpty());
                 PMO_SystemOutRedirect.println("activeCount: " + java.lang.Thread.activeCount());
-                airlock.notify();
+                airlock.notifyAll();
 //                return;
             } catch (InterruptedException e) {
 
@@ -188,15 +194,18 @@ public class MoonBase implements MoonBaseInterface {
                 PMO_SystemOutRedirect.println("-------------------------------------------------------------new event");
                 synchronized (airlock) {
                     airlock.notify();
+                }
                     boolean reaction = eventReaction(event, cargo, airlock);
                     if (!reaction) {
-                        try {
-                            airlock.wait();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                        synchronized (airlock) {
+                            try {
+                                airlock.wait();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
-                }
+//                }
             }
 
 
