@@ -1,9 +1,9 @@
 
-1squid:S1220""Move this file to a named package.
-…squid:S1845"pRename method "runCompleted" to prevent any misunderstanding/clash with field "runCompleted" defined on line 23.(—‹‘¿
-psquid:S00116"[Rename this field "NUMBER_OF_CARGOS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( á‚_
-xsquid:S00116"]Rename this field "CARGOS_TO_AIRLOCKS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾õŠ ùÿÿÿÿ
 :squid:S1166"%Either log or rethrow this exception.(”ı¾
-hsquid:S00101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(·œ¬˜ÿÿÿÿÿ
+psquid:S00116"[Rename this field "NUMBER_OF_CARGOS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( á‚_
+…squid:S1845"pRename method "runCompleted" to prevent any misunderstanding/clash with field "runCompleted" defined on line 23.(—‹‘¿
 ssquid:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ
+hsquid:S00101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(·œ¬˜ÿÿÿÿÿ
+xsquid:S00116"]Rename this field "CARGOS_TO_AIRLOCKS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾õŠ ùÿÿÿÿ
+1squid:S1220""Move this file to a named package.
 xsquid:S00116"]Rename this field "NUMBER_OF_AIRLOCKS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óïÑùÿÿÿÿ
