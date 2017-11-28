@@ -15,12 +15,14 @@ public class MoonBase implements MoonBaseInterface {
 //    private HashMap<AirlockInterface, Runnable> airthread = new HashMap<AirlockInterface, Runnable>();
     private List<CargoInterface> cargos = Collections.synchronizedList(new ArrayList<CargoInterface>());
     private Integer jj = new Integer(3);
+    private HashMap<AirlockInterface, Boolean> flagMap = new HashMap<AirlockInterface, Boolean>();
+    private HashMap<AirlockInterface, Boolean> cargoFlagMap = new HashMap<AirlockInterface, Boolean>();
 
     @Override
     public void setAirlocksConfiguration(List<AirlockInterface> airlocks) {
         this.air = airlocks;
         PMO_SystemOutRedirect.println("init activeCount: " + java.lang.Thread.activeCount());
-      
+
 
         for (AirlockInterface airlock: air) {
 //            this.air.putIfAbsent(airlock.getSize(), new ArrayList<AirlockInterface>());
@@ -29,79 +31,99 @@ public class MoonBase implements MoonBaseInterface {
             ArrayList<AirlockInterface> tmpa = this.dummyair.get(airlock.getSize());
             tmpa.add(airlock);
             this.ac.put(airlock, new LinkedBlockingQueue<>());
+            this.flagMap.put(airlock, Boolean.FALSE);
+            this.cargoFlagMap.put(airlock, Boolean.FALSE);
 
 
-            Thread th = new Thread(new Runnable() {
+            new Thread(new Runnable() {
                 public void run() {
-                    airlock.setEventsListener(eventListenerInside(ac.get(airlock).peek(), airlock));
-
 //                    synchronized (airlock) {
+//                        try {
+//                            airlock.wait();
+//
+//                        } catch (InterruptedException e) {
+//                            //                            e.printStackTrace();
+//                        }
+//                    }
 
-//                        PMO_SystemOutRedirect.println("                     " + java.lang.Thread.currentThread().getName());
-//                        PMO_SystemOutRedirect.println("]]]]]]]]]]]]" + java.lang.Thread.activeCount());
-//                        PMO_SystemOutRedirect.println("------///////////////////////\\\\\\\\\\\\\\\\\\\\---"+ac.get(airlock).isEmpty());
-                        if(ac.get(airlock).isEmpty()){
+                        while(ac.get(airlock).isEmpty() || flagMap.get(airlock)){
                             synchronized (airlock) {
+                                try {
+                                    airlock.wait();
 
-                            try {
-                                PMO_SystemOutRedirect.println("wait on: " + airlock);
-                                airlock.wait();
-
-                            } catch (InterruptedException e) {
-//                            e.printStackTrace();
-                            }
+                                } catch (InterruptedException e) {
+    //                            e.printStackTrace();
+                                }
                             }
                         }
-                        PMO_SystemOutRedirect.println("checkvalue " + !ac.get(airlock).isEmpty());
-//                        while (!ac.get(airlock).isEmpty()) {
-                        while (!ac.get(airlock).isEmpty()) {
+                        if(flagMap.get(airlock)){
+                            airlock.setEventsListener(eventListenerInside(ac.get(airlock).peek(), airlock));
+                        }
+//                        PMO_SystemOutRedirect.println("checkvalue " + !ac.get(airlock).isEmpty());
+                        while (!ac.get(airlock).isEmpty() && !flagMap.get(airlock)) {
+//                            PMO_SystemOutRedirect.println("1111111111111111ac.get(airlock).peek():    " + airlock + ac.get(airlock).peek());
+//                            PMO_SystemOutRedirect.println("ac.get(airlock)ac.get(airlock)ac.get(airlock)ac.get(airlock): " + ac.get(airlock).size() + airlock);
+//                            if(cargoFlagMap.get(airlock)){
+//                                PMO_SystemOutRedirect.println("cargoFlagMap.get(airlock): " + cargoFlagMap.get(airlock));
+//
+//                                try {
+//                                    ac.get(airlock).take();
+//                                    cargoFlagMap.put(airlock, Boolean.FALSE);
+//
+//                                } catch (InterruptedException e) {
+//                                    e.printStackTrace();
+//                                }
+//                                PMO_SystemOutRedirect.println("ac.get(airlock)ac.get(airlock)ac.get(airlock)ac.get(airlock): " + ac.get(airlock).size() + airlock);
+//                            }
+//                            PMO_SystemOutRedirect.println("22222222222222222222ac.get(airlock).peek():    " + airlock + ac.get(airlock).peek());
+                            airlock.setEventsListener(eventListenerInside(ac.get(airlock).peek(), airlock));
+
                             PMO_SystemOutRedirect.println("                     notified" );
                             CargoInterface c = ac.get(airlock).peek();
                             if (c.getDirection() == Direction.INSIDE) {
-
-                                airlock.openExternalAirtightDoors();
+                                if(!flagMap.get(airlock)){
+                                    airlock.openExternalAirtightDoors();
+                                    flagMap.put(airlock, Boolean.TRUE);
+                                }
+//                                airlock.openExternalAirtightDoors();
+//                                flagMap.put(airlock, Boolean.TRUE);
                                 synchronized (airlock) {
-                                try {
-                                    airlock.wait();
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }}
+                                    while (flagMap.get(airlock)) {
+                                        try {
+                                            airlock.wait();
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }
                             } else {
-                                airlock.openInternalAirtightDoors();
+                                if(!flagMap.get(airlock)){
+                                    airlock.openInternalAirtightDoors();
+                                    flagMap.put(airlock, Boolean.TRUE);
+                                }
+//
+// airlock.openInternalAirtightDoors();
+//                                flagMap.put(airlock, Boolean.TRUE);
                                 synchronized (airlock) {
-                                try {
-                                    airlock.wait();
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }}
+                                    while (flagMap.get(airlock)) {
+                                        try {
+                                            airlock.wait();
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }
                             }
 
+                            try {
+                                ac.get(airlock).take();
 
-//                            try {
-//
-//                                ac.get(airlock).take();
-//                            } catch (InterruptedException e) {
-//                                e.printStackTrace();
-//                            }
-//                            PMO_SystemOutRedirect.println("airlock not empty");
-
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                         }
-
-                        ;
-//                        try {
-//                            airlock.wait();
-//                            PMO_SystemOutRedirect.println("wait in run");
-//                        } catch (InterruptedException e) {
-////                            e.printStackTrace();
-//                        }
                     }
-//                }
-            });
-//            synchronized (airthread) {
-//                airthread.put(airlock, th);
-//            }
-            th.start();
-//            PMO_SystemOutRedirect.println("ac: " + th.getState());
+            }).start();
 
         }
 
@@ -109,7 +131,7 @@ public class MoonBase implements MoonBaseInterface {
 
 
     @Override
-     public void cargoTransfer(CargoInterface cargo, Direction direction) {
+     public void cargoTransfer(CargoInterface cargo, Direction direction)  {
         AirlockInterface airlock = null;
         AirlockInterface minAirlock = null;
 //        PMO_SystemOutRedirect.println("ac: " + air);
@@ -128,17 +150,33 @@ public class MoonBase implements MoonBaseInterface {
                             }
 
                         }
+//                        synchronized (ac){
+//                            try {
+//                                ac.get(aa).put(cargo);
+//
+//                            } catch (InterruptedException e) {
+//                                continue;
+//                            }
+//                        }
                         synchronized (airlock){
                             try {
                                 ac.get(aa).put(cargo);
-                                PMO_SystemOutRedirect.println("notify on: " + airlock);
-                                PMO_SystemOutRedirect.println("notify value: " + ac.get(airlock).isEmpty());
-                                PMO_SystemOutRedirect.println("activeCount: " + java.lang.Thread.activeCount());
-                                airlock.notifyAll();
-//                                return;
+
                             } catch (InterruptedException e) {
                                 continue;
                             }
+
+//                                ac.get(aa).put(cargo);
+                                PMO_SystemOutRedirect.println("cargo                      cargo: " + cargo);
+//                                PMO_SystemOutRedirect.println("notify on: " + airlock);
+//                                PMO_SystemOutRedirect.println("notify value: " + ac.get(airlock).isEmpty());
+//                                PMO_SystemOutRedirect.println("activeCount: " + java.lang.Thread.activeCount());
+//                                airlock.notify();
+                                if(!flagMap.get(airlock)) {
+                                    airlock.notify();
+                                }
+                                return;
+
 
                         }
 
@@ -154,16 +192,6 @@ public class MoonBase implements MoonBaseInterface {
 
             }
         }
-//        synchronized (minAirlock) {
-//            try {
-//                ac.get(minAirlock).put(cargo);
-////                PMO_SystemOutRedirect.println("------\\\\\\\\\\\\\\\\\\\\---"+ac.get(minAirlock).isEmpty());
-//                minAirlock.notify();
-//            } catch (InterruptedException e) {
-////                e.printStackTrace();
-//            }
-//
-//        }
         for (AirlockInterface as: air) {
             if(minAirlock == as){
                 airlock = as;
@@ -171,17 +199,30 @@ public class MoonBase implements MoonBaseInterface {
             }
 
         }
+//        synchronized (ac){
+//            try {
+//                ac.get(minAirlock).put(cargo);
+//            } catch (InterruptedException e) {
+//
+//            }
+//        }
         synchronized (airlock){
             try {
                 ac.get(minAirlock).put(cargo);
-                PMO_SystemOutRedirect.println("notify on: " + airlock);
-                PMO_SystemOutRedirect.println("notify value: " + ac.get(airlock).isEmpty());
-                PMO_SystemOutRedirect.println("activeCount: " + java.lang.Thread.activeCount());
-                airlock.notifyAll();
-//                return;
             } catch (InterruptedException e) {
 
             }
+
+//                ac.get(minAirlock).put(cargo);
+                PMO_SystemOutRedirect.println("cargo                      cargo: " + cargo);
+//                PMO_SystemOutRedirect.println("notify on: " + airlock);
+//                PMO_SystemOutRedirect.println("notify value: " + ac.get(airlock).isEmpty());
+//                PMO_SystemOutRedirect.println("activeCount: " + java.lang.Thread.activeCount());
+                if(!flagMap.get(airlock)) {
+                    airlock.notify();
+                }
+                return;
+
 
         }
 
@@ -192,12 +233,15 @@ public class MoonBase implements MoonBaseInterface {
         return new AirlockInterface.EventsListenerInterface() {
             public void newAirlockEvent(AirlockInterface.Event event) {
                 PMO_SystemOutRedirect.println("-------------------------------------------------------------new event");
-                synchronized (airlock) {
-                    airlock.notify();
-                }
-                    boolean reaction = eventReaction(event, cargo, airlock);
-                    if (!reaction) {
-                        synchronized (airlock) {
+//                flagMap.put(airlock, Boolean.FALSE);
+//                synchronized (airlock) {
+//                    airlock.notify();
+//                }
+                boolean reaction = eventReaction(event, cargo, airlock);
+                if (!reaction) {
+                    flagMap.put(airlock, Boolean.TRUE);
+                    synchronized (airlock) {
+                        while (flagMap.get(airlock)) {
                             try {
                                 airlock.wait();
                             } catch (InterruptedException e) {
@@ -205,7 +249,14 @@ public class MoonBase implements MoonBaseInterface {
                             }
                         }
                     }
-//                }
+                } else {
+                    flagMap.put(airlock, Boolean.FALSE);
+                    cargoFlagMap.put(airlock, Boolean.TRUE);
+                }
+
+                synchronized (airlock) {
+                    airlock.notify();
+                }
             }
 
 
