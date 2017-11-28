@@ -46,7 +46,7 @@ public class MoonBase implements MoonBaseInterface {
 //                        }
 //                    }
 
-                        while(ac.get(airlock).isEmpty() || flagMap.get(airlock)){
+                        if(ac.get(airlock).isEmpty() || flagMap.get(airlock)){
                             synchronized (airlock) {
                                 try {
                                     airlock.wait();
@@ -78,7 +78,7 @@ public class MoonBase implements MoonBaseInterface {
 //                            PMO_SystemOutRedirect.println("22222222222222222222ac.get(airlock).peek():    " + airlock + ac.get(airlock).peek());
                             airlock.setEventsListener(eventListenerInside(ac.get(airlock).peek(), airlock));
 
-                            PMO_SystemOutRedirect.println("                     notified" );
+//                            PMO_SystemOutRedirect.println("                     notified" );
                             CargoInterface c = ac.get(airlock).peek();
                             if (c.getDirection() == Direction.INSIDE) {
                                 if(!flagMap.get(airlock)){
@@ -165,9 +165,17 @@ public class MoonBase implements MoonBaseInterface {
                             } catch (InterruptedException e) {
                                 continue;
                             }
+                        }
+                        synchronized (airlock){
+//                            try {
+//                                ac.get(aa).put(cargo);
+//
+//                            } catch (InterruptedException e) {
+//                                continue;
+//                            }
 
 //                                ac.get(aa).put(cargo);
-                                PMO_SystemOutRedirect.println("cargo                      cargo: " + cargo);
+//                                PMO_SystemOutRedirect.println("cargo                      cargo: " + cargo);
 //                                PMO_SystemOutRedirect.println("notify on: " + airlock);
 //                                PMO_SystemOutRedirect.println("notify value: " + ac.get(airlock).isEmpty());
 //                                PMO_SystemOutRedirect.println("activeCount: " + java.lang.Thread.activeCount());
@@ -206,15 +214,22 @@ public class MoonBase implements MoonBaseInterface {
 //
 //            }
 //        }
-        synchronized (airlock){
+        synchronized (airlock) {
             try {
                 ac.get(minAirlock).put(cargo);
             } catch (InterruptedException e) {
 
             }
+        }
+        synchronized (airlock){
+//            try {
+//                ac.get(minAirlock).put(cargo);
+//            } catch (InterruptedException e) {
+//
+//            }
 
 //                ac.get(minAirlock).put(cargo);
-                PMO_SystemOutRedirect.println("cargo                      cargo: " + cargo);
+//                PMO_SystemOutRedirect.println("cargo                      cargo: " + cargo);
 //                PMO_SystemOutRedirect.println("notify on: " + airlock);
 //                PMO_SystemOutRedirect.println("notify value: " + ac.get(airlock).isEmpty());
 //                PMO_SystemOutRedirect.println("activeCount: " + java.lang.Thread.activeCount());
@@ -232,7 +247,6 @@ public class MoonBase implements MoonBaseInterface {
     private AirlockInterface.EventsListenerInterface eventListenerInside(CargoInterface cargo, AirlockInterface airlock) {
         return new AirlockInterface.EventsListenerInterface() {
             public void newAirlockEvent(AirlockInterface.Event event) {
-                PMO_SystemOutRedirect.println("-------------------------------------------------------------new event");
 //                flagMap.put(airlock, Boolean.FALSE);
 //                synchronized (airlock) {
 //                    airlock.notify();
