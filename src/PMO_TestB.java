@@ -64,11 +64,23 @@ public class PMO_TestB extends PMO_TestA {
 	public boolean isOK() {
 		try {
 			if (suspiciousThreads.size() > 0) {
-				PMO_CommonErrorLog.error("BLAD: znaleziono watki, ktore sa w stanie RUNNABLE lub TIMED_WAITING");
+
+				PMO_CommonErrorLog.error("WARNING: znaleziono watki, ktore sa w stanie RUNNABLE lub TIMED_WAITING");
+				AtomicBoolean aliveTestOK = new AtomicBoolean(true);
 				suspiciousThreads.forEach(t -> {
-					PMO_CommonErrorLog.error(PMO_ThreadsHelper.thread2String(t));
+					String txt = PMO_ThreadsHelper.thread2String(t);
+					if ( ! txt.contains("is not alive" ) ) {
+						PMO_CommonErrorLog.error(txt);
+						aliveTestOK.set(false);
+					}
 				});
-				return false;
+
+				if ( aliveTestOK.get() ) {
+					PMO_CommonErrorLog.error("OK: Na szczescie okazalo sie, ze zlapane watki juz nie zyja...");
+				} else {
+					PMO_CommonErrorLog.error("BLAD: Potwierdzono, ze zlapane watki nadal sa aktywne...");
+				}
+				return aliveTestOK.get();
 			} else {
 				PMO_SystemOutRedirect.println("OK: Nie wykryto watkow, ktore sa w stanie RUNNABLE lub TIMED_WAITTING");
 				PMO_Log.log("OK: Nie wykryto watkow, ktore sa w stanie RUNNABLE lub TIMED_WAITTING");

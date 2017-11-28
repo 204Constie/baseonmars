@@ -5,13 +5,15 @@
  * Created by constie on 15.11.2017.
  */
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class MoonBase implements MoonBaseInterface {
     private List<AirlockInterface> air = new ArrayList<>();
 //    private SortedMap<Integer, ArrayList<AirlockInterface>> air = new TreeMap<Integer, ArrayList<AirlockInterface>>();
     private SortedMap<Integer, ArrayList<AirlockInterface>> dummyair = new TreeMap<Integer, ArrayList<AirlockInterface>>();
-    private HashMap<AirlockInterface, LinkedBlockingQueue<CargoInterface>> ac = new HashMap<AirlockInterface, LinkedBlockingQueue<CargoInterface>>();
+    private ConcurrentHashMap<AirlockInterface, LinkedBlockingQueue<CargoInterface>> ac = new ConcurrentHashMap<AirlockInterface, LinkedBlockingQueue<CargoInterface>>();
+
 //    private HashMap<AirlockInterface, Runnable> airthread = new HashMap<AirlockInterface, Runnable>();
     private List<CargoInterface> cargos = Collections.synchronizedList(new ArrayList<CargoInterface>());
     private Integer jj = new Integer(3);
@@ -21,7 +23,7 @@ public class MoonBase implements MoonBaseInterface {
     @Override
     public void setAirlocksConfiguration(List<AirlockInterface> airlocks) {
         this.air = airlocks;
-        PMO_SystemOutRedirect.println("init activeCount: " + java.lang.Thread.activeCount());
+//        PMO_SystemOutRedirect.println("init activeCount: " + java.lang.Thread.activeCount());
 
 
         for (AirlockInterface airlock: air) {
@@ -45,6 +47,8 @@ public class MoonBase implements MoonBaseInterface {
 //                            //                            e.printStackTrace();
 //                        }
 //                    }
+//                    if(ac.contains(airlock)){};
+//                    if(flagMap.get(airlock)){};
 
                         if(ac.get(airlock).isEmpty() || flagMap.get(airlock)){
                             synchronized (airlock) {
@@ -52,7 +56,7 @@ public class MoonBase implements MoonBaseInterface {
                                     airlock.wait();
 
                                 } catch (InterruptedException e) {
-    //                            e.printStackTrace();
+                                e.printStackTrace();
                                 }
                             }
                         }
