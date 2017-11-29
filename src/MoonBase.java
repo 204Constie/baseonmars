@@ -87,7 +87,7 @@ public class MoonBase implements MoonBaseInterface {
                             }
 
 
-                            while (flagMap.get(airlock)) {
+                            if (flagMap.get(airlock)) {
                                 synchronized (airlock) {
                                     try {
                                         airlock.wait();
