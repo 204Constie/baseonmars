@@ -63,7 +63,9 @@ public class MoonBase implements MoonBaseInterface {
                             }
                         }
                         if(flagMap.get(airlock)){
-                            airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
+                            synchronized (airlock) {
+                                airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
+                            }
                         }
 //                        PMO_SystemOutRedirect.println("checkvalue " + !ac.get(airlock).isEmpty());
                         while (!ac.get(airlock).isEmpty() && !flagMap.get(airlock)) {
@@ -83,13 +85,13 @@ public class MoonBase implements MoonBaseInterface {
 //                                PMO_SystemOutRedirect.println("ac.get(airlock)ac.get(airlock)ac.get(airlock)ac.get(airlock): " + ac.get(airlock).size() + airlock);
 //                            }
 //                            PMO_SystemOutRedirect.println("22222222222222222222ac.get(airlock).peek():    " + airlock + ac.get(airlock).peek());
-                            airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
+                            synchronized (airlock) {
+                                airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
+                            }
 
 //                            PMO_SystemOutRedirect.println("                     notified" );
-                            CargoInterface c = null;
-                            synchronized (ac) {
-                                 c = ac.get(airlock).get(0);
-                            }
+
+                            CargoInterface c = ac.get(airlock).get(0);
                             if (c.getDirection() == Direction.INSIDE) {
                                 if(!flagMap.get(airlock)){
                                     airlock.openExternalAirtightDoors();
