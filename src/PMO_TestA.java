@@ -110,7 +110,7 @@ public class PMO_TestA implements PMO_TestInterface {
 
 	@Override
 	public long requiredTime() {
-		return (CARGOS_TO_AIRLOCKS + 1) * PMO_Consts.AIRLOCK_WORK_CYCLE;
+		return (CARGOS_TO_AIRLOCKS + 1) * PMO_Consts.AIRLOCK_WORK_CYCLE + 3000;
 	}
 
 	@Override

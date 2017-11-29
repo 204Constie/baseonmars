@@ -9,7 +9,7 @@ public class PMO_Consts {
 	public static final long CARGO_MOVE_DELAY = 200;
 	public static final long CARGO_MOVE_DELAY_SHORT = 50;
 
-	public static final long CARG_TRANSFER_EXECUTION_TIME_LIMIT = 50;
+	public static final long CARG_TRANSFER_EXECUTION_TIME_LIMIT = 5000;
 
 	public static final long AIRLOCK_WORK_CYCLE = 2 * (DOOR_OPENING_DELAY + DOOR_CLOSING_DELAY + CARGO_MOVE_DELAY);
 
