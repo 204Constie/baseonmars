@@ -96,7 +96,7 @@ public class MoonBase implements MoonBaseInterface {
 
 
     @Override
-     synchronized public void cargoTransfer(CargoInterface cargo, Direction direction)  {
+      public void cargoTransfer(CargoInterface cargo, Direction direction)  {
         AirlockInterface airlock = null;
         AirlockInterface minAirlock = null;
 //        PMO_SystemOutRedirect.println("ac: " + air);
