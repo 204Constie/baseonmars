@@ -51,16 +51,16 @@ public class MoonBase implements MoonBaseInterface {
                             }
                         }
                         if(flagMap.get(airlock)){
-                            synchronized (airlock) {
+//                            synchronized (airlock) {
                                 airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
-                            }
+//                            }
                         }
 //                        PMO_SystemOutRedirect.println("checkvalue " + !ac.get(airlock).isEmpty());
                         while (!ac.get(airlock).isEmpty() && !flagMap.get(airlock)) {
 
-                            synchronized (airlock) {
+//                            synchronized (airlock) {
                                 airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
-                            }
+//                            }
 
 //                            PMO_SystemOutRedirect.println("                     notified" );
 
@@ -70,8 +70,7 @@ public class MoonBase implements MoonBaseInterface {
                                     airlock.openExternalAirtightDoors();
                                     flagMap.put(airlock, Boolean.TRUE);
                                 }
-//                                airlock.openExternalAirtightDoors();
-//                                flagMap.put(airlock, Boolean.TRUE);
+
                                 synchronized (airlock) {
                                     while (flagMap.get(airlock)) {
                                         try {
@@ -124,35 +123,35 @@ public class MoonBase implements MoonBaseInterface {
         for (Integer i : mm.keySet()) {
             for (AirlockInterface aa : mm.get(i)) {
 
-                    if (ac.get(aa).isEmpty()) {
-                        for (AirlockInterface as: air) {
-                            if(aa == as){
-                                airlock = as;
-                                break;
-                            }
-
+                if (ac.get(aa).isEmpty()) {
+                    for (AirlockInterface as: air) {
+                        if(aa == as){
+                            airlock = as;
+                            break;
                         }
+
+                    }
 //                        synchronized (ac){
-                                ac.get(aa).add(cargo);
+                            ac.get(aa).add(cargo);
 //                        }
-                        synchronized (airlock){
-                            if(!flagMap.get(airlock)) {
-                                airlock.notify();
-                            }
-                            return;
+                    synchronized (airlock){
+                        if(!flagMap.get(airlock)) {
+                            airlock.notify();
 
                         }
+                        return;
+                    }
 
+                } else {
+                    if (minAirlock == null) {
+                        minAirlock = aa;
                     } else {
-                        if (minAirlock == null) {
-                            minAirlock = aa;
-                        } else {
 
-                            if (ac.get(aa).size() < ac.get(minAirlock).size()) {
-                                minAirlock = aa;
-                            }
+                        if (ac.get(aa).size() < ac.get(minAirlock).size()) {
+                            minAirlock = aa;
                         }
                     }
+                }
 
 
             }
@@ -170,8 +169,9 @@ public class MoonBase implements MoonBaseInterface {
         synchronized (airlock){
             if(!flagMap.get(airlock)) {
                 airlock.notify();
-                return;
+
             }
+            return;
 
         }
 
