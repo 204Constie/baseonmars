@@ -67,17 +67,17 @@ public class MoonBase implements MoonBaseInterface {
                             CargoInterface c = ac.get(airlock).get(0);
 
                             if (c.getDirection() == Direction.INSIDE) {
-                                if (!flagMap.get(airlock)) {
+//                                if (!flagMap.get(airlock)) {
                                     airlock.openExternalAirtightDoors();
                                     flagMap.put(airlock, Boolean.TRUE);
-                                }
+//                                }
 
 
                             } else {
-                                if (!flagMap.get(airlock)) {
+//                                if (!flagMap.get(airlock)) {
                                     airlock.openInternalAirtightDoors();
                                     flagMap.put(airlock, Boolean.TRUE);
-                                }
+//                                }
                             }
 
 
