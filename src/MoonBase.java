@@ -51,6 +51,15 @@ public class MoonBase implements MoonBaseInterface {
                                 e.printStackTrace();
                             }
                         }
+                    if (flagMap.get(airlock)) {
+                        synchronized (airlock) {
+                            try {
+                                airlock.wait();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
 //                    }
 //                    initflag = false;
 //                    }
@@ -181,6 +190,7 @@ public class MoonBase implements MoonBaseInterface {
                             }
                         }
                     }
+
 
                 } else {
                     flagMap.put(airlock, Boolean.FALSE);
