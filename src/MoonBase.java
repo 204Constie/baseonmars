@@ -6,21 +6,21 @@
  */
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class MoonBase implements MoonBaseInterface {
     private List<AirlockInterface> air = new ArrayList<>();
 //    private SortedMap<Integer, ArrayList<AirlockInterface>> air = new TreeMap<Integer, ArrayList<AirlockInterface>>();
-    private SortedMap<Integer, ArrayList<AirlockInterface>> dummyair = new TreeMap<Integer, ArrayList<AirlockInterface>>();
+    private ConcurrentSkipListMap<Integer, ArrayList<AirlockInterface>> dummyair = new ConcurrentSkipListMap<Integer, ArrayList<AirlockInterface>>();
     private ConcurrentHashMap<AirlockInterface, LinkedBlockingQueue<CargoInterface>> ac = new ConcurrentHashMap<AirlockInterface, LinkedBlockingQueue<CargoInterface>>();
 
 //    private HashMap<AirlockInterface, Runnable> airthread = new HashMap<AirlockInterface, Runnable>();
     private List<CargoInterface> cargos = Collections.synchronizedList(new ArrayList<CargoInterface>());
     private Integer jj = new Integer(3);
-    private HashMap<AirlockInterface, Boolean> flagMap = new HashMap<AirlockInterface, Boolean>();
-    private HashMap<AirlockInterface, Boolean> cargoFlagMap = new HashMap<AirlockInterface, Boolean>();
-    int iter =0;
-    int bigiter =0;
+    private ConcurrentHashMap<AirlockInterface, Boolean> flagMap = new ConcurrentHashMap<AirlockInterface, Boolean>();
+    private ConcurrentHashMap<AirlockInterface, Boolean> cargoFlagMap = new ConcurrentHashMap<AirlockInterface, Boolean>();
+
 
     @Override
     public void setAirlocksConfiguration(List<AirlockInterface> airlocks) {
@@ -41,8 +41,6 @@ public class MoonBase implements MoonBaseInterface {
 
             new Thread(new Runnable() {
                 public void run() {
-                    PMO_SystemOutRedirect.println("bigiter: " + bigiter);
-                    PMO_SystemOutRedirect.println("iter: " + iter);
 //                    synchronized (airlock) {
 //                        try {
 //                            airlock.wait();
@@ -69,6 +67,7 @@ public class MoonBase implements MoonBaseInterface {
                         }
 //                        PMO_SystemOutRedirect.println("checkvalue " + !ac.get(airlock).isEmpty());
                         while (!ac.get(airlock).isEmpty() && !flagMap.get(airlock)) {
+
 //                            PMO_SystemOutRedirect.println("1111111111111111ac.get(airlock).peek():    " + airlock + ac.get(airlock).peek());
 //                            PMO_SystemOutRedirect.println("ac.get(airlock)ac.get(airlock)ac.get(airlock)ac.get(airlock): " + ac.get(airlock).size() + airlock);
 //                            if(cargoFlagMap.get(airlock)){
@@ -146,7 +145,6 @@ public class MoonBase implements MoonBaseInterface {
 //        Map<Integer, ArrayList<AirlockInterface>> mm = this.air.tailMap(cargo.getSize());
         Map<Integer, ArrayList<AirlockInterface>> mm = this.dummyair.tailMap(cargo.getSize());
 
-        bigiter++;
 
         for (Integer i : mm.keySet()) {
             for (AirlockInterface aa : mm.get(i)) {
@@ -170,7 +168,6 @@ public class MoonBase implements MoonBaseInterface {
                         synchronized (airlock){
                             try {
                                 ac.get(aa).put(cargo);
-                                iter++;
 
                             } catch (InterruptedException e) {
                                 continue;
@@ -227,7 +224,6 @@ public class MoonBase implements MoonBaseInterface {
         synchronized (airlock) {
             try {
                 ac.get(minAirlock).put(cargo);
-                iter++;
             } catch (InterruptedException e) {
 
             }
