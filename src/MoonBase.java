@@ -44,21 +44,14 @@ public class MoonBase implements MoonBaseInterface {
 
 //                    while (ac.get(airlock).isEmpty() || flagMap.get(airlock)) {
 //                    if(initflag) {
-                        synchronized (airlock) {
-                            try {
-                                airlock.wait();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+                    synchronized (airlock) {
+                        try {
+                            airlock.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
-//                    }
-//                    initflag = false;
-//                    }
-//                        if(flagMap.get(airlock)){
-//                            PMO_SystemOutRedirect.println("11ac.get(airlock).get(0), airlock): " + ac.get(airlock).get(0) + " " + airlock);
-//                            airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
-//                        }
-//                    if (!ac.get(airlock).isEmpty() && !flagMap.get(airlock)){
+                    }
+                    if (!ac.get(airlock).isEmpty() && !flagMap.get(airlock)){
                     while (!ac.get(airlock).isEmpty()) {
 
                         airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
@@ -85,7 +78,7 @@ public class MoonBase implements MoonBaseInterface {
                             }
                         }
 
-                        if(cargoFlagMap.get(airlock)) {
+                        if (cargoFlagMap.get(airlock)) {
                             ac.get(airlock).remove(0);
                         }
                     }
@@ -93,7 +86,8 @@ public class MoonBase implements MoonBaseInterface {
 //                    else {
 //
 //                    }
-                    }
+                }
+            }
             }).start();
 
         }
