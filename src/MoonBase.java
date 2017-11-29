@@ -106,6 +106,7 @@ public class MoonBase implements MoonBaseInterface {
 
         for (Integer i : mm.keySet()) {
             for (AirlockInterface aa : mm.get(i)) {
+                PMO_SystemOutRedirect.println(" - " + ac.get(aa).size());
 
                 if (ac.get(aa).isEmpty()) {
 //                        synchronized (ac.get(aa)){
@@ -134,6 +135,10 @@ public class MoonBase implements MoonBaseInterface {
 
             }
         }
+
+//        for(int i=0; i<ac.size(); i++){
+            PMO_SystemOutRedirect.println(" - " + ac.get(minAirlock).size());
+//        }
 
         ac.get(minAirlock).add(cargo);
 
