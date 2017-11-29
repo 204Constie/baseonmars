@@ -40,39 +40,40 @@ public class MoonBase implements MoonBaseInterface {
             new Thread(new Runnable() {
                 public void run() {
 
-                        if(ac.get(airlock).isEmpty() || flagMap.get(airlock)){
-                            synchronized (airlock) {
-                                try {
-                                    airlock.wait();
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
+                    if (ac.get(airlock).isEmpty() || flagMap.get(airlock)) {
+                        synchronized (airlock) {
+                            try {
+                                airlock.wait();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
                             }
                         }
+                    }
 //                        if(flagMap.get(airlock)){
 //                            PMO_SystemOutRedirect.println("11ac.get(airlock).get(0), airlock): " + ac.get(airlock).get(0) + " " + airlock);
 //                            airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
 //                        }
-                        while (!ac.get(airlock).isEmpty() && !flagMap.get(airlock)) {
+                    if (!ac.get(airlock).isEmpty() && !flagMap.get(airlock)){
+                        while (!ac.get(airlock).isEmpty()) {
 //                            PMO_SystemOutRedirect.println("ac: " + ac);
 
 //                            synchronized (airlock) {
 //                            PMO_SystemOutRedirect.println("22ac.get(airlock).get(0), airlock): " + ac.get(airlock).get(0) + " " + airlock);
-                            synchronized (ac){
+                            synchronized (ac) {
                                 airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
                             }
 
                             CargoInterface c = ac.get(airlock).get(0);
 
                             if (c.getDirection() == Direction.INSIDE) {
-                                if(!flagMap.get(airlock)){
+                                if (!flagMap.get(airlock)) {
                                     airlock.openExternalAirtightDoors();
                                     flagMap.put(airlock, Boolean.TRUE);
                                 }
 
 
                             } else {
-                                if(!flagMap.get(airlock)){
+                                if (!flagMap.get(airlock)) {
                                     airlock.openInternalAirtightDoors();
                                     flagMap.put(airlock, Boolean.TRUE);
                                 }
@@ -95,6 +96,7 @@ public class MoonBase implements MoonBaseInterface {
                             }
 
                         }
+                }
                     }
             }).start();
 
