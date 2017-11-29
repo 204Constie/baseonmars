@@ -86,7 +86,10 @@ public class MoonBase implements MoonBaseInterface {
                             airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
 
 //                            PMO_SystemOutRedirect.println("                     notified" );
-                            CargoInterface c = ac.get(airlock).get(0);
+                            CargoInterface c = null;
+                            synchronized (ac) {
+                                 c = ac.get(airlock).get(0);
+                            }
                             if (c.getDirection() == Direction.INSIDE) {
                                 if(!flagMap.get(airlock)){
                                     airlock.openExternalAirtightDoors();
