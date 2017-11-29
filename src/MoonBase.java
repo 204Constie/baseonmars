@@ -6,6 +6,7 @@
  */
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -123,7 +124,7 @@ public class MoonBase implements MoonBaseInterface {
         AirlockInterface minAirlock = null;
 //        PMO_SystemOutRedirect.println("ac: " + air);
 //        Map<Integer, ArrayList<AirlockInterface>> mm = this.air.tailMap(cargo.getSize());
-        Map<Integer, ArrayList<AirlockInterface>> mm = this.dummyair.tailMap(cargo.getSize());
+        ConcurrentMap<Integer, ArrayList<AirlockInterface>> mm = this.dummyair.tailMap(cargo.getSize());
 
 
         for (Integer i : mm.keySet()) {
