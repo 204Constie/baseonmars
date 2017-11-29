@@ -131,15 +131,13 @@ public class MoonBase implements MoonBaseInterface {
             for (AirlockInterface aa : mm.get(i)) {
 
                 if (ac.get(aa).isEmpty()) {
-//                        synchronized (ac){
-
+                        synchronized (ac.get(aa)){
                             ac.get(aa).add(cargo);
-//                        }
+                        }
 
                     if(!flagMap.get(aa)) {
                         synchronized (aa){
                             aa.notify();
-
                         }
                         return;
                     }
@@ -158,17 +156,15 @@ public class MoonBase implements MoonBaseInterface {
 
             }
         }
-//        synchronized (ac) {
+        synchronized (ac.get(minAirlock)) {
             ac.get(minAirlock).add(cargo);
-//        }
+        }
 
         if(!flagMap.get(minAirlock)) {
             synchronized (minAirlock){
                 minAirlock.notify();
-
             }
             return;
-
         }
 
     }
