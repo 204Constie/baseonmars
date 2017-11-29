@@ -51,7 +51,7 @@ public class MoonBase implements MoonBaseInterface {
                             e.printStackTrace();
                         }
                     }
-                    if (!ac.get(airlock).isEmpty() && !flagMap.get(airlock)){
+//                    if (!ac.get(airlock).isEmpty() && !flagMap.get(airlock)){
                     while (!ac.get(airlock).isEmpty()) {
 
                         airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
@@ -61,9 +61,13 @@ public class MoonBase implements MoonBaseInterface {
 
                         if (c.getDirection() == Direction.INSIDE) {
                             flagMap.put(airlock, Boolean.TRUE);
+
+                            cargoFlagMap.put(airlock, Boolean.FALSE);
                             airlock.openExternalAirtightDoors();
                         } else {
                             flagMap.put(airlock, Boolean.TRUE);
+
+                            cargoFlagMap.put(airlock, Boolean.FALSE);
                             airlock.openInternalAirtightDoors();
                         }
 
@@ -86,7 +90,7 @@ public class MoonBase implements MoonBaseInterface {
 //                    else {
 //
 //                    }
-                }
+//                }
             }
             }).start();
 
