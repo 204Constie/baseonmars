@@ -64,9 +64,9 @@ public class MoonBase implements MoonBaseInterface {
 
 //                            synchronized (airlock) {
 //                            PMO_SystemOutRedirect.println("22ac.get(airlock).get(0), airlock): " + ac.get(airlock).get(0) + " " + airlock);
-                            synchronized (ac) {
+//                            synchronized (ac) {
                         airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
-                            }
+//                            }
 
                             CargoInterface c = ac.get(airlock).get(0);
 
@@ -97,9 +97,9 @@ public class MoonBase implements MoonBaseInterface {
                             }
 
 
-                            synchronized (ac) {
+//                            synchronized (ac) {
                                 ac.get(airlock).remove(0);
-                            }
+//                            }
 //                            if(cargoFlagMap.get(airlock)){
 //                                ac.get(airlock).remove(0);
 //                            }
@@ -130,12 +130,13 @@ public class MoonBase implements MoonBaseInterface {
             for (AirlockInterface aa : mm.get(i)) {
 
                 if (ac.get(aa).isEmpty()) {
-                        synchronized (ac){
+//                        synchronized (ac){
 
                             ac.get(aa).add(cargo);
-                        }
-                    synchronized (aa){
-                        if(!flagMap.get(aa)) {
+//                        }
+
+                    if(!flagMap.get(aa)) {
+                        synchronized (aa){
                             aa.notify();
 
                         }
@@ -156,11 +157,12 @@ public class MoonBase implements MoonBaseInterface {
 
             }
         }
-        synchronized (ac) {
+//        synchronized (ac) {
             ac.get(minAirlock).add(cargo);
-        }
-        synchronized (minAirlock){
-            if(!flagMap.get(minAirlock)) {
+//        }
+
+        if(!flagMap.get(minAirlock)) {
+            synchronized (minAirlock){
                 minAirlock.notify();
 
             }
