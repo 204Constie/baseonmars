@@ -111,24 +111,23 @@ public class MoonBase implements MoonBaseInterface {
             for (AirlockInterface aa : mm.get(i)) {
 
                 if (ac.get(aa).isEmpty()) {
-                    for (AirlockInterface as: air) {
-                        if(aa == as){
-                            airlock = as;
-                            break;
-                        }
-
-                    }
+//                    for (AirlockInterface as: air) {
+//                        if(aa == as){
+//                            airlock = as;
+//                            break;
+//                        }
+//
+//                    }
 //                        synchronized (ac){
                             ac.get(aa).add(cargo);
 //                        }
-                    synchronized (airlock){
-                        if(!flagMap.get(airlock)) {
-                            airlock.notify();
+                    synchronized (aa){
+                        if(!flagMap.get(aa)) {
+                            aa.notify();
 
                         }
-
+                        return;
                     }
-                    return;
 
                 } else {
                     if (minAirlock == null) {
@@ -144,24 +143,24 @@ public class MoonBase implements MoonBaseInterface {
 
             }
         }
-        for (AirlockInterface as: air) {
-            if(minAirlock == as){
-                airlock = as;
-                break;
-            }
-
-        }
+//        for (AirlockInterface as: air) {
+//            if(minAirlock == as){
+//                airlock = as;
+//                break;
+//            }
+//
+//        }
 //        synchronized (ac) {
             ac.get(minAirlock).add(cargo);
 //        }
-        synchronized (airlock){
-            if(!flagMap.get(airlock)) {
-                airlock.notify();
+        synchronized (minAirlock){
+            if(!flagMap.get(minAirlock)) {
+                minAirlock.notify();
 
             }
+            return;
 
         }
-        return;
 
     }
 
