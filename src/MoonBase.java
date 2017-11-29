@@ -56,9 +56,7 @@ public class MoonBase implements MoonBaseInterface {
 //                    if (!ac.get(airlock).isEmpty() && !flagMap.get(airlock)){
                         while (!ac.get(airlock).isEmpty()) {
 //                            PMO_SystemOutRedirect.println("ac: " + ac);
-                            if(cargoFlagMap.get(airlock)){
-                                ac.get(airlock).remove(0);
-                            }
+
 
 //                            synchronized (airlock) {
 //                            PMO_SystemOutRedirect.println("22ac.get(airlock).get(0), airlock): " + ac.get(airlock).get(0) + " " + airlock);
@@ -97,6 +95,9 @@ public class MoonBase implements MoonBaseInterface {
 //                            synchronized (ac) {
 //                                ac.get(airlock).remove(0);
 //                            }
+                            if(cargoFlagMap.get(airlock)){
+                                ac.get(airlock).remove(0);
+                            }
 
                         }
 //                    }
