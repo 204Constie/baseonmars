@@ -13,7 +13,7 @@ public class MoonBase implements MoonBaseInterface {
     private List<AirlockInterface> air = new ArrayList<>();
 //    private SortedMap<Integer, ArrayList<AirlockInterface>> air = new TreeMap<Integer, ArrayList<AirlockInterface>>();
     private ConcurrentSkipListMap<Integer, ArrayList<AirlockInterface>> dummyair = new ConcurrentSkipListMap<Integer, ArrayList<AirlockInterface>>();
-    private ConcurrentHashMap<AirlockInterface, LinkedBlockingQueue<CargoInterface>> ac = new ConcurrentHashMap<AirlockInterface, LinkedBlockingQueue<CargoInterface>>();
+    private ConcurrentHashMap<AirlockInterface, List<CargoInterface>> ac = new ConcurrentHashMap<AirlockInterface, List<CargoInterface>>();
 
 //    private HashMap<AirlockInterface, Runnable> airthread = new HashMap<AirlockInterface, Runnable>();
     private List<CargoInterface> cargos = Collections.synchronizedList(new ArrayList<CargoInterface>());
@@ -34,7 +34,7 @@ public class MoonBase implements MoonBaseInterface {
 //            ArrayList<AirlockInterface> tmpa = this.air.get(airlock.getSize());
             ArrayList<AirlockInterface> tmpa = this.dummyair.get(airlock.getSize());
             tmpa.add(airlock);
-            this.ac.put(airlock, new LinkedBlockingQueue<>());
+            this.ac.put(airlock, Collections.synchronizedList(new ArrayList<>()));
             this.flagMap.put(airlock, Boolean.FALSE);
             this.cargoFlagMap.put(airlock, Boolean.FALSE);
 
@@ -63,7 +63,7 @@ public class MoonBase implements MoonBaseInterface {
                             }
                         }
                         if(flagMap.get(airlock)){
-                            airlock.setEventsListener(eventListenerInside(ac.get(airlock).peek(), airlock));
+                            airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
                         }
 //                        PMO_SystemOutRedirect.println("checkvalue " + !ac.get(airlock).isEmpty());
                         while (!ac.get(airlock).isEmpty() && !flagMap.get(airlock)) {
@@ -83,10 +83,10 @@ public class MoonBase implements MoonBaseInterface {
 //                                PMO_SystemOutRedirect.println("ac.get(airlock)ac.get(airlock)ac.get(airlock)ac.get(airlock): " + ac.get(airlock).size() + airlock);
 //                            }
 //                            PMO_SystemOutRedirect.println("22222222222222222222ac.get(airlock).peek():    " + airlock + ac.get(airlock).peek());
-                            airlock.setEventsListener(eventListenerInside(ac.get(airlock).peek(), airlock));
+                            airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
 
 //                            PMO_SystemOutRedirect.println("                     notified" );
-                            CargoInterface c = ac.get(airlock).peek();
+                            CargoInterface c = ac.get(airlock).get(0);
                             if (c.getDirection() == Direction.INSIDE) {
                                 if(!flagMap.get(airlock)){
                                     airlock.openExternalAirtightDoors();
@@ -122,12 +122,10 @@ public class MoonBase implements MoonBaseInterface {
                                 }
                             }
 
-                            try {
-                                ac.get(airlock).take();
-
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                            synchronized (ac) {
+                                ac.get(airlock).remove(0);
                             }
+
                         }
                     }
             }).start();
@@ -166,12 +164,8 @@ public class MoonBase implements MoonBaseInterface {
 //                            }
 //                        }
                         synchronized (airlock){
-                            try {
-                                ac.get(aa).put(cargo);
+                                ac.get(aa).add(cargo);
 
-                            } catch (InterruptedException e) {
-                                continue;
-                            }
                         }
                         synchronized (airlock){
 //                            try {
@@ -222,11 +216,9 @@ public class MoonBase implements MoonBaseInterface {
 //            }
 //        }
         synchronized (airlock) {
-            try {
-                ac.get(minAirlock).put(cargo);
-            } catch (InterruptedException e) {
 
-            }
+                ac.get(minAirlock).add(cargo);
+
         }
         synchronized (airlock){
 //            try {
