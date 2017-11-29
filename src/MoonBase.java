@@ -17,7 +17,6 @@ public class MoonBase implements MoonBaseInterface {
 
 //    private HashMap<AirlockInterface, Runnable> airthread = new HashMap<AirlockInterface, Runnable>();
     private List<CargoInterface> cargos = Collections.synchronizedList(new ArrayList<CargoInterface>());
-    private Integer jj = new Integer(3);
     private ConcurrentHashMap<AirlockInterface, Boolean> flagMap = new ConcurrentHashMap<AirlockInterface, Boolean>();
     private ConcurrentHashMap<AirlockInterface, Boolean> cargoFlagMap = new ConcurrentHashMap<AirlockInterface, Boolean>();
 
@@ -168,9 +167,8 @@ public class MoonBase implements MoonBaseInterface {
 //                                continue;
 //                            }
 //                        }
-                        synchronized (airlock){
+                        synchronized (ac){
                                 ac.get(aa).add(cargo);
-
                         }
                         synchronized (airlock){
 //                            try {
@@ -220,7 +218,7 @@ public class MoonBase implements MoonBaseInterface {
 //
 //            }
 //        }
-        synchronized (airlock) {
+        synchronized (ac) {
 
                 ac.get(minAirlock).add(cargo);
 
