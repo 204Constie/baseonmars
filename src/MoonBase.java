@@ -41,7 +41,6 @@ public class MoonBase implements MoonBaseInterface {
                 public void run() {
 
                     while (ac.get(airlock).isEmpty() || flagMap.get(airlock)) {
-                        PMO_SystemOutRedirect.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>");
                         synchronized (airlock) {
                             try {
                                 airlock.wait();
@@ -56,6 +55,15 @@ public class MoonBase implements MoonBaseInterface {
 //                        }
 //                    if (!ac.get(airlock).isEmpty() && !flagMap.get(airlock)){
                         while (!ac.get(airlock).isEmpty()) {
+                            while (flagMap.get(airlock)) {
+                                synchronized (airlock) {
+                                    try {
+                                        airlock.wait();
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
 //                            PMO_SystemOutRedirect.println("ac: " + ac);
 
 //                            synchronized (airlock) {
@@ -81,16 +89,15 @@ public class MoonBase implements MoonBaseInterface {
                             }
 
 
-                            while (flagMap.get(airlock)) {
-                                PMO_SystemOutRedirect.println(")))))))))))))))))))))))))");
-                                synchronized (airlock) {
-                                    try {
-                                        airlock.wait();
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            }
+//                            while (flagMap.get(airlock)) {
+//                                synchronized (airlock) {
+//                                    try {
+//                                        airlock.wait();
+//                                    } catch (InterruptedException e) {
+//                                        e.printStackTrace();
+//                                    }
+//                                }
+//                            }
 
 
 //                            synchronized (ac) {
