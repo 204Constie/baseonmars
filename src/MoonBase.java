@@ -98,9 +98,9 @@ public class MoonBase implements MoonBaseInterface {
                             }
 
 
-                            synchronized (ac.get(airlock)) {
+//                            synchronized (ac.get(airlock)) {
                                 ac.get(airlock).remove(0);
-                            }
+//                            }
 //                            if(cargoFlagMap.get(airlock)){
 //                                ac.get(airlock).remove(0);
 //                            }
@@ -179,7 +179,7 @@ public class MoonBase implements MoonBaseInterface {
                 boolean reaction = eventReaction(event, cargo, airlock);
                 if (!reaction) {
 
-                    while (flagMap.get(airlock)) {
+                    if (flagMap.get(airlock)) {
                         synchronized (airlock) {
                             try {
                                 airlock.wait();
