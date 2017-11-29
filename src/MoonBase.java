@@ -29,9 +29,9 @@ public class MoonBase implements MoonBaseInterface {
 
         for (AirlockInterface airlock: air) {
 //            this.air.putIfAbsent(airlock.getSize(), new ArrayList<AirlockInterface>());
-            this.dummyair.putIfAbsent(airlock.getSize(), new ArrayList<AirlockInterface>());
+            this.dummyair.putIfAbsent(airlock.getSize(), new ArrayList<>());
 //            ArrayList<AirlockInterface> tmpa = this.air.get(airlock.getSize());
-            ArrayList<AirlockInterface> tmpa = this.dummyair.get(airlock.getSize());
+            List<AirlockInterface> tmpa = Collections.synchronizedList(this.dummyair.get(airlock.getSize()));
             tmpa.add(airlock);
             this.ac.put(airlock, Collections.synchronizedList(new ArrayList<>()));
             this.flagMap.put(airlock, Boolean.FALSE);
@@ -169,7 +169,6 @@ public class MoonBase implements MoonBaseInterface {
             return;
 
         }
-        return;
 
     }
 
