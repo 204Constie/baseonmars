@@ -96,7 +96,9 @@ public class MoonBase implements MoonBaseInterface {
                             }
 
                         }
-                }
+                    } else {
+
+                    }
                     }
             }).start();
 
@@ -182,7 +184,7 @@ public class MoonBase implements MoonBaseInterface {
 //                }
                 boolean reaction = eventReaction(event, cargo, airlock);
                 if (!reaction) {
-                    flagMap.put(airlock, Boolean.TRUE);
+//                    flagMap.put(airlock, Boolean.TRUE);
                         while (flagMap.get(airlock)) {
                             synchronized (airlock) {
                                 try {
