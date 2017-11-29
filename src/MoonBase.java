@@ -16,7 +16,7 @@ public class MoonBase implements MoonBaseInterface {
     private ConcurrentHashMap<AirlockInterface, List<CargoInterface>> ac = new ConcurrentHashMap<AirlockInterface, List<CargoInterface>>();
 
 //    private HashMap<AirlockInterface, Runnable> airthread = new HashMap<AirlockInterface, Runnable>();
-    private List<CargoInterface> cargos = Collections.synchronizedList(new ArrayList<CargoInterface>());
+//    private List<CargoInterface> cargos = Collections.synchronizedList(new ArrayList<CargoInterface>());
     private ConcurrentHashMap<AirlockInterface, Boolean> flagMap = new ConcurrentHashMap<AirlockInterface, Boolean>();
     private ConcurrentHashMap<AirlockInterface, Boolean> cargoFlagMap = new ConcurrentHashMap<AirlockInterface, Boolean>();
 
@@ -24,7 +24,6 @@ public class MoonBase implements MoonBaseInterface {
     @Override
     public void setAirlocksConfiguration(List<AirlockInterface> airlocks) {
         this.air = airlocks;
-//        PMO_SystemOutRedirect.println("init activeCount: " + java.lang.Thread.activeCount());
 
 
         for (AirlockInterface airlock: air) {
@@ -55,14 +54,11 @@ public class MoonBase implements MoonBaseInterface {
                                 airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
 //                            }
                         }
-//                        PMO_SystemOutRedirect.println("checkvalue " + !ac.get(airlock).isEmpty());
                         while (!ac.get(airlock).isEmpty() && !flagMap.get(airlock)) {
 
 //                            synchronized (airlock) {
                                 airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
 //                            }
-
-//                            PMO_SystemOutRedirect.println("                     notified" );
 
                             CargoInterface c = ac.get(airlock).get(0);
                             if (c.getDirection() == Direction.INSIDE) {
@@ -71,15 +67,7 @@ public class MoonBase implements MoonBaseInterface {
                                     flagMap.put(airlock, Boolean.TRUE);
                                 }
 
-                                synchronized (airlock) {
-                                    while (flagMap.get(airlock)) {
-                                        try {
-                                            airlock.wait();
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                }
+                                
                             } else {
                                 if(!flagMap.get(airlock)){
                                     airlock.openInternalAirtightDoors();
@@ -87,20 +75,22 @@ public class MoonBase implements MoonBaseInterface {
                                 }
 
 
-                                synchronized (airlock) {
-                                    while (flagMap.get(airlock)) {
-                                        try {
-                                            airlock.wait();
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
+
+                            }
+
+                            synchronized (airlock) {
+                                while (flagMap.get(airlock)) {
+                                    try {
+                                        airlock.wait();
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
                                     }
                                 }
                             }
 
-                            synchronized (ac) {
+//                            synchronized (ac) {
                                 ac.get(airlock).remove(0);
-                            }
+//                            }
 
                         }
                     }
