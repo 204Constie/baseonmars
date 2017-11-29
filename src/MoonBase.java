@@ -54,7 +54,7 @@ public class MoonBase implements MoonBaseInterface {
 //                            PMO_SystemOutRedirect.println("11ac.get(airlock).get(0), airlock): " + ac.get(airlock).get(0) + " " + airlock);
 //                            airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
 //                        }
-                    if (!ac.get(airlock).isEmpty() && !flagMap.get(airlock)){
+//                    if (!ac.get(airlock).isEmpty() && !flagMap.get(airlock)){
                         while (!ac.get(airlock).isEmpty()) {
 //                            PMO_SystemOutRedirect.println("ac: " + ac);
 
@@ -98,7 +98,7 @@ public class MoonBase implements MoonBaseInterface {
 //                            }
 
                         }
-                    }
+//                    }
 //                    else {
 //
 //                    }
@@ -182,9 +182,7 @@ public class MoonBase implements MoonBaseInterface {
         return new AirlockInterface.EventsListenerInterface() {
             public void newAirlockEvent(AirlockInterface.Event event) {
 //                flagMap.put(airlock, Boolean.FALSE);
-//                synchronized (airlock) {
-//                    airlock.notify();
-//                }
+
                 flagMap.put(airlock, Boolean.TRUE);
                 boolean reaction = eventReaction(event, cargo, airlock);
                 if (!reaction) {
