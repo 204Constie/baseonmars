@@ -59,9 +59,9 @@ public class MoonBase implements MoonBaseInterface {
 
 //                            synchronized (airlock) {
 //                            PMO_SystemOutRedirect.println("22ac.get(airlock).get(0), airlock): " + ac.get(airlock).get(0) + " " + airlock);
-                            synchronized (ac) {
+//                            synchronized (ac) {
                                 airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
-                            }
+//                            }
 
                             CargoInterface c = ac.get(airlock).get(0);
 
@@ -91,14 +91,15 @@ public class MoonBase implements MoonBaseInterface {
                             }
 
 
-                            synchronized (ac) {
+//                            synchronized (ac) {
                                 ac.get(airlock).remove(0);
-                            }
+//                            }
 
                         }
-                    } else {
-
                     }
+//                    else {
+//
+//                    }
                     }
             }).start();
 
@@ -184,7 +185,7 @@ public class MoonBase implements MoonBaseInterface {
 //                }
                 boolean reaction = eventReaction(event, cargo, airlock);
                 if (!reaction) {
-//                    flagMap.put(airlock, Boolean.TRUE);
+                    flagMap.put(airlock, Boolean.TRUE);
                         while (flagMap.get(airlock)) {
                             synchronized (airlock) {
                                 try {
