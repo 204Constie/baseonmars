@@ -40,7 +40,7 @@ public class MoonBase implements MoonBaseInterface {
             new Thread(new Runnable() {
                 public void run() {
 
-                    if (ac.get(airlock).isEmpty() || flagMap.get(airlock)) {
+                    while (ac.get(airlock).isEmpty() || flagMap.get(airlock)) {
                         synchronized (airlock) {
                             try {
                                 airlock.wait();
