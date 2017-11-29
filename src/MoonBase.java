@@ -50,17 +50,19 @@ public class MoonBase implements MoonBaseInterface {
                             }
                         }
                         if(flagMap.get(airlock)){
-//                            synchronized (airlock) {
-                                airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
-//                            }
+                            PMO_SystemOutRedirect.println("11ac.get(airlock).get(0), airlock): " + ac.get(airlock).get(0) + " " + airlock);
+                            airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
                         }
                         while (!ac.get(airlock).isEmpty() && !flagMap.get(airlock)) {
+//                            PMO_SystemOutRedirect.println("ac: " + ac);
 
 //                            synchronized (airlock) {
-                                airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
+                            PMO_SystemOutRedirect.println("22ac.get(airlock).get(0), airlock): " + ac.get(airlock).get(0) + " " + airlock);
+                            airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
 //                            }
 
                             CargoInterface c = ac.get(airlock).get(0);
+
                             if (c.getDirection() == Direction.INSIDE) {
                                 if(!flagMap.get(airlock)){
                                     airlock.openExternalAirtightDoors();
@@ -119,6 +121,7 @@ public class MoonBase implements MoonBaseInterface {
 //
 //                    }
 //                        synchronized (ac){
+
                             ac.get(aa).add(cargo);
 //                        }
                     synchronized (aa){
