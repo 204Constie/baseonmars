@@ -1,81 +1,68 @@
 
-bsquid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8İ×Ò¡ÿ+
-Bsquid:S1068"&Remove this unused "jj" private field.(Ã¸Ñ—8ŞŒÎ¨ÿ+
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8ìÆ´“€,
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(öØ®¿8“äÌ€,
-Fsquid:S00108")Either remove or fill this block of code.(ä ¹€8£´“€,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ü±‰…úÿÿÿÿ8ÙÇÍ€,
-i
-squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(ü™£—8ıé¹€,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ñ¥ùšøÿÿÿÿ8ìÆ´“€,
-Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¹öÍşÿ+
-Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8í´•”€,
-Fsquid:S1068"*Remove this unused "cargos" private field.(óõ»Æ8¶•Ìı+
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(öØ®¿8úó±ÿÿ+
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ú¡­„øÿÿÿÿ8ÜÓ¶€,
-bsquid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8²ïÍ€,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ã¿®ûÿÿÿÿ8×Ğ¤„ÿ+
-[squid:S2274":Remove this call to "wait" or move it into a "while" loop.(§ßÂıøÿÿÿÿ8«¦í“€,
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(­—¬ç8·³Ëÿÿ+
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(°ü‘Šùÿÿÿÿ8¡İµ€,
-Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8şµ¤€,
-Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¹öÍşÿ+
-Vsquid:S1161":Add the "@Override" annotation above this method signature(“–ış8ĞÓ‰óı+
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(öØ®¿8ú¶³“€,
-Usquid:S2864"4Iterate over the "entrySet" instead of the "keySet".(À½ÙÏûÿÿÿÿ8¹öÍşÿ+
-n
-squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(©ª™™üÿÿÿÿ8¹öÍşÿ+
-Isquid:S1604"(Make this anonymous inner class a lambda(€ëšËûÿÿÿÿ8§¸äşÿ+
-bsquid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8ãÿË€,
-n
-squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(¡»¢üùÿÿÿÿ8‡˜³“€,
-bsquid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8…Ş’€,
-fsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ëî8úó±ÿÿ+
- squid:S1862"„This branch can not be reached because the condition duplicates a previous condition in the same sequence of "if/else if" statements(öˆÔN8…Ş’€,
-usquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¢“ØÉ8á‹–şÿ+
-[squid:S1161":Add the "@Override" annotation above this method signature(©Ìúÿÿÿÿ8§¸äşÿ+
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Í‹»Ïıÿÿÿÿ8¡±ˆ„ÿ+
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(§·÷‡şÿÿÿÿ8¹öÍşÿ+
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÜâÇøÿÿÿÿ8´”“€,
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(öØ®¿8 ¡€,
-Qsquid:S2446"0"notify" may not wake up the appropriate thread.(ÈÍí›üÿÿÿÿ8Ñö˜€,
-}squid:S1188"\Reduce this anonymous class number of lines from 23 to at most 20, or make it a named class.(€ëšËûÿÿÿÿ8–¦Š€,
- squid:S1862"„This branch can not be reached because the condition duplicates a previous condition in the same sequence of "if/else if" statements(öˆÔN8…Ş’€,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(½¯Âäøÿÿÿÿ8¹òÕ•€,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(º‘òıÿÿÿÿ8êû„„ÿ+
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ñ¥ùšøÿÿÿÿ8ú¶³“€,
-i
-squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(ıÈæî8¹öÍşÿ+
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8ÙÇÍ€,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Šë‚¬€,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ü±‰…úÿÿÿÿ8Ğ­­€,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(º‰Ï—8ªÔŸ¬€,
+ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(Éİà’øÿÿÿÿ8Í’²ñı+
+\squid:S1854";Remove this useless assignment to local variable "airlock".(í³ııÿÿÿÿ8¥®Íª€,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.( Òæó8†Çú¬€,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8ôŠ®­€,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8çÇö«€,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8Ğ­­€,
+Lsquid:S2446"0"notify" may not wake up the appropriate thread.(üéëß8ÍµÆ©€,
+zsquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÓµÈôùÿÿÿÿ8©´¦•€,
+bsquid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8Šë‚¬€,
+Msquid:S1481",Remove this unused "airlock" local variable.(í³ııÿÿÿÿ8¥®Íª€,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8ªÔŸ¬€,
+ squid:S1862"„This branch can not be reached because the condition duplicates a previous condition in the same sequence of "if/else if" statements(öˆÔN8¬˜à¬€,
 1squid:S1220""Move this file to a named package.
-bsquid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8£´“€,
-usquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(—¿å»8­¤†„ÿ+
-Qsquid:S2446"0"notify" may not wake up the appropriate thread.(ÈÍí›üÿÿÿÿ8§¸äşÿ+
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(­—¬ç8»¯­€,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(º‘òıÿÿÿÿ8êû„„ÿ+
+Qsquid:S2446"0"notify" may not wake up the appropriate thread.(†ş‘Äúÿÿÿÿ8ÍµÆ©€,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(§·÷‡şÿÿÿÿ8¹öÍşÿ+
+ssquid:UselessImportCheck"ERemove this unused import 'java.util.concurrent.LinkedBlockingQueue'.(ŸØšüÿÿÿÿ8İ©€,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8½ğÅ¬€,
 i
-squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(ü™£—8¶Åˆÿÿ+
-Qsquid:S2446"0"notify" may not wake up the appropriate thread.(ÈÍí›üÿÿÿÿ8Ÿ½Óşÿ+
-usquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(„¥û‘8á«àÿÿ+
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ñ¥ùšøÿÿÿÿ8 ¡€,
-xsquid:S1188"\Reduce this anonymous class number of lines from 54 to at most 20, or make it a named class.(ÉãÃ®8ĞÓ‰óı+
-nsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(íß…é8…Ş’€,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(å¥Çèşÿÿÿÿ8îˆÿÿ+
-Dsquid:S1604"(Make this anonymous inner class a lambda(ÉãÃ®8öÂäÿÿ+
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(£âçæ8”Ì‰„ÿ+
-i
-squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(ùßĞü8¹öÍşÿ+
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(„›÷óûÿÿÿÿ8Ê¡®€,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ìĞ‘îÿÿÿÿÿ8Ö’â€€,
-bsquid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8‡˜³“€,
-usquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(õºÚ°8©´¦•€,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ü±‰…úÿÿÿÿ8“äÌ€,
-bsquid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8¹öÍşÿ+
-=squid:S2129"!Remove this "Integer" constructor(Ã¸Ñ—8€Šı§ÿ+
-i
-squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(ü™£—8îˆÿÿ+
-csquid:S2259"BNullPointerException might be thrown as 'airlock' is nullable here(ÈÍí›üÿÿÿÿ8§¸äşÿ+
+squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(ùßĞü8ÍµÆ©€,
+ squid:S1862"„This branch can not be reached because the condition duplicates a previous condition in the same sequence of "if/else if" statements(öˆÔN8Ñôø¬€,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ü±‰…úÿÿÿÿ8Ğ­­€,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8ªÔŸ¬€,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8ƒÃ«€,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(µØ¸—üÿÿÿÿ8’ôÚª€,
+bsquid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8½ğÅ¬€,
+fsquid:S2259"ENullPointerException might be thrown as 'minAirlock' is nullable here(†ş‘Äúÿÿÿÿ8¥®Íª€,
+bsquid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8Ò÷¹ª€,
+}squid:S1188"\Reduce this anonymous class number of lines from 22 to at most 20, or make it a named class.(€ëšËûÿÿÿÿ8À´€­€,
+xsquid:S1188"\Reduce this anonymous class number of lines from 32 to at most 20, or make it a named class.(ÉãÃ®8ĞÓ‰óı+
+[squid:S2274":Remove this call to "wait" or move it into a "while" loop.(§ßÂıøÿÿÿÿ8˜ˆÇ¬€,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(­—¬ç8Ò÷¹ª€,
 n
-squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(©ª™™üÿÿÿÿ8¹öÍşÿ+
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(áˆò³ûÿÿÿÿ8¶Åˆÿÿ+
-ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 39 to the 15 allowed.(§¹ÁËıÿÿÿÿ8¹öÍşÿ+
-Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8…Ş’€,
-ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 57 to the 15 allowed.(Éİà’øÿÿÿÿ8Í’²ñı+
+squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(æ™ºöüÿÿÿÿ8ÍµÆ©€,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Ò÷¹ª€,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(­—¬ç8»Ô­€,
+Isquid:S1604"(Make this anonymous inner class a lambda(€ëšËûÿÿÿÿ8Ò÷¹ª€,
+zsquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÛØ¥¬ùÿÿÿÿ8á‹–şÿ+
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ã¿®ûÿÿÿÿ8×Ğ¤„ÿ+
+Vsquid:S1161":Add the "@Override" annotation above this method signature(“–ış8ĞÓ‰óı+
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Í‹»Ïıÿÿÿÿ8¡±ˆ„ÿ+
+nsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(íß…é8¬˜à¬€,
+n
+squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(¡»¢üùÿÿÿÿ8Šë‚¬€,
+usquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").( åù¹8Ñı¨€,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(£âçæ8”Ì‰„ÿ+
+[squid:S1161":Add the "@Override" annotation above this method signature(©Ìúÿÿÿÿ8Ò÷¹ª€,
+Ksquid:S1068"0Remove this unused "cargoFlagMap" private field.(ş”‘8†Çú¬€,
+nsquid:S1450"RRemove the "air" field and declare it as a local variable in the relevant methods.(´¯¹8ùÌª€,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ü±‰…úÿÿÿÿ8Ğ­­€,
+Usquid:S2864"4Iterate over the "entrySet" instead of the "keySet".(À½ÙÏûÿÿÿÿ8¹öÍşÿ+
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8˜ˆÇ¬€,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(«ÚÒÿÿÿÿÿ8˜ˆÇ¬€,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÂïÓĞùÿÿÿÿ8Ñé­€,
+Dsquid:S1604"(Make this anonymous inner class a lambda(ÉãÃ®8öÂäÿÿ+
+tsquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ş”‘8á«àÿÿ+
+ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(§¹ÁËıÿÿÿÿ8¹öÍşÿ+
+fsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ëî8Ü±‹ª€,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(º‰Ï—8ªÔŸ¬€,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Şøöı8ğĞ€­€,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8Ğ­­€,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8Ğ­­€,
+Qsquid:S2446"0"notify" may not wake up the appropriate thread.(ÈÍí›üÿÿÿÿ8À´€­€,
