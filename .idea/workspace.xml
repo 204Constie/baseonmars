@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d49224f-32bc-4080-9203-8757621b74ed" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/b/1b1e56ea4d243d2ec63096eeac6cc7a718110578" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/b/1b1e56ea4d243d2ec63096eeac6cc7a718110578" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/6/769a02d31bdf217b920b491613ab9082ff2a0f2c" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/6/769a02d31bdf217b920b491613ab9082ff2a0f2c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/c/9c5e834ea7c56c40438d359db31add2cadb63a2e" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/c/9c5e834ea7c56c40438d359db31add2cadb63a2e" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/c/ccf6bc83695e4104205559b706b2f7c561c7a006" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/c/ccf6bc83695e4104205559b706b2f7c561c7a006" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/2/d29b2ffb5d4fd9a3b96bb5423bc396b9ab2a3e1d" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/2/d29b2ffb5d4fd9a3b96bb5423bc396b9ab2a3e1d" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/0/e037eed6b36ce3678f378727f601071736fe870b" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/0/e037eed6b36ce3678f378727f601071736fe870b" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PMO_TestA.java" afterPath="$PROJECT_DIR$/src/PMO_TestA.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -116,10 +109,10 @@
         <entry file="file://$PROJECT_DIR$/src/PMO_TestA.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="317">
-              <caret line="112" column="78" lean-forward="false" selection-start-line="112" selection-start-column="78" selection-end-line="112" selection-end-column="78" />
+              <caret line="112" column="71" lean-forward="false" selection-start-line="112" selection-start-column="71" selection-end-line="112" selection-end-column="71" />
               <folding>
                 <element signature="e#3106#3107#0" expanded="true" />
-                <element signature="e#3183#3184#0" expanded="true" />
+                <element signature="e#3176#3177#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -738,12 +731,12 @@
       <workItem from="1511823714355" duration="7934000" />
       <workItem from="1511867398868" duration="8221000" />
       <workItem from="1511913485900" duration="10175000" />
-      <workItem from="1511954055077" duration="205000" />
+      <workItem from="1511954055077" duration="287000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75252000" />
+    <option name="totallyTimeSpent" value="75334000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1149,10 +1142,10 @@
     <entry file="file://$PROJECT_DIR$/src/PMO_TestA.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="317">
-          <caret line="112" column="78" lean-forward="false" selection-start-line="112" selection-start-column="78" selection-end-line="112" selection-end-column="78" />
+          <caret line="112" column="71" lean-forward="false" selection-start-line="112" selection-start-column="71" selection-end-line="112" selection-end-column="71" />
           <folding>
             <element signature="e#3106#3107#0" expanded="true" />
-            <element signature="e#3183#3184#0" expanded="true" />
+            <element signature="e#3176#3177#0" expanded="true" />
           </folding>
         </state>
       </provider>
