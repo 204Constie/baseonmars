@@ -174,8 +174,10 @@ public class MoonBase implements MoonBaseInterface {
                         if (minAirlock == null) {
                             minAirlock = aa;
                         } else {
-                            if (ac.get(aa).size() < ac.get(minAirlock).size()) {
-                                minAirlock = aa;
+                            synchronized (ac) {
+                                if (ac.get(aa).size() < ac.get(minAirlock).size()) {
+                                    minAirlock = aa;
+                                }
                             }
                         }
                     }
@@ -191,9 +193,7 @@ public class MoonBase implements MoonBaseInterface {
 
         }
         synchronized (ac) {
-
-                ac.get(minAirlock).add(cargo);
-
+            ac.get(minAirlock).add(cargo);
         }
         synchronized (airlock){
             if(!flagMap.get(airlock)) {
