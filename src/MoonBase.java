@@ -34,7 +34,7 @@ public class MoonBase implements MoonBaseInterface {
             tmpa.add(airlock);
             this.ac.put(airlock, Collections.synchronizedList(new ArrayList<>()));
             this.flagMap.put(airlock, Boolean.FALSE);
-            this.cargoFlagMap.put(airlock, Boolean.FALSE);
+//            this.cargoFlagMap.put(airlock, Boolean.FALSE);
 
 
             new Thread(new Runnable() {
@@ -198,7 +198,7 @@ public class MoonBase implements MoonBaseInterface {
 
                 } else {
                     flagMap.put(airlock, Boolean.FALSE);
-                    cargoFlagMap.put(airlock, Boolean.TRUE);
+//                    cargoFlagMap.put(airlock, Boolean.TRUE);
                 }
 
                 synchronized (airlock) {
