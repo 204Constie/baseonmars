@@ -63,27 +63,20 @@ public class MoonBase implements MoonBaseInterface {
 //                            PMO_SystemOutRedirect.println("ac: " + ac);
 
 
-//                            synchronized (airlock) {
+                            synchronized (airlock) {
 //                            PMO_SystemOutRedirect.println("22ac.get(airlock).get(0), airlock): " + ac.get(airlock).get(0) + " " + airlock);
 //                            synchronized (ac) {
                         airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
-//                            }
+                            }
 
                             CargoInterface c = ac.get(airlock).get(0);
 
                             if (c.getDirection() == Direction.INSIDE) {
-//                                if (!flagMap.get(airlock)) {
                                 flagMap.put(airlock, Boolean.TRUE);
                                 airlock.openExternalAirtightDoors();
-//                                }
-
-
                             } else {
-//                                if (!flagMap.get(airlock)) {
                                 flagMap.put(airlock, Boolean.TRUE);
                                 airlock.openInternalAirtightDoors();
-
-//                                }
                             }
 
 
