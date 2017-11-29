@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class MoonBase implements MoonBaseInterface {
-    private List<AirlockInterface> air = new ArrayList<>();
+    private List<AirlockInterface> air = Collections.synchronizedList(new ArrayList<>());
 //    private SortedMap<Integer, ArrayList<AirlockInterface>> air = new TreeMap<Integer, ArrayList<AirlockInterface>>();
     private ConcurrentSkipListMap<Integer, ArrayList<AirlockInterface>> dummyair = new ConcurrentSkipListMap<Integer, ArrayList<AirlockInterface>>();
     private ConcurrentHashMap<AirlockInterface, List<CargoInterface>> ac = new ConcurrentHashMap<AirlockInterface, List<CargoInterface>>();
