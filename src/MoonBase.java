@@ -198,8 +198,9 @@ public class MoonBase implements MoonBaseInterface {
         synchronized (airlock){
             if(!flagMap.get(airlock)) {
                 airlock.notify();
+                return;
             }
-            return;
+
         }
 
     }
