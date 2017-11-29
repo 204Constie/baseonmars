@@ -98,9 +98,9 @@ public class MoonBase implements MoonBaseInterface {
                             }
 
 
-//                            synchronized (ac) {
+                            synchronized (ac.get(airlock)) {
                                 ac.get(airlock).remove(0);
-//                            }
+                            }
 //                            if(cargoFlagMap.get(airlock)){
 //                                ac.get(airlock).remove(0);
 //                            }
