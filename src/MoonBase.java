@@ -36,7 +36,7 @@ public class MoonBase implements MoonBaseInterface {
             tmpa.add(airlock);
             this.ac.put(airlock, Collections.synchronizedList(new ArrayList<>()));
             this.flagMap.put(airlock, Boolean.FALSE);
-//            this.cargoFlagMap.put(airlock, Boolean.FALSE);
+            this.cargoFlagMap.put(airlock, Boolean.FALSE);
 
 
             new Thread(new Runnable() {
@@ -60,43 +60,34 @@ public class MoonBase implements MoonBaseInterface {
 //                        }
 //                    if (!ac.get(airlock).isEmpty() && !flagMap.get(airlock)){
                     while (!ac.get(airlock).isEmpty()) {
-//                            PMO_SystemOutRedirect.println("ac: " + ac);
 
-
-//                            PMO_SystemOutRedirect.println("22ac.get(airlock).get(0), airlock): " + ac.get(airlock).get(0) + " " + airlock);
-//                            synchronized (ac) {
                         airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
 
 
-                            CargoInterface c = ac.get(airlock).get(0);
+                        CargoInterface c = ac.get(airlock).get(0);
 
-                            if (c.getDirection() == Direction.INSIDE) {
-                                flagMap.put(airlock, Boolean.TRUE);
-                                airlock.openExternalAirtightDoors();
-                            } else {
-                                flagMap.put(airlock, Boolean.TRUE);
-                                airlock.openInternalAirtightDoors();
-                            }
+                        if (c.getDirection() == Direction.INSIDE) {
+                            flagMap.put(airlock, Boolean.TRUE);
+                            airlock.openExternalAirtightDoors();
+                        } else {
+                            flagMap.put(airlock, Boolean.TRUE);
+                            airlock.openInternalAirtightDoors();
+                        }
 
 
-                            if (flagMap.get(airlock)) {
-                                synchronized (airlock) {
-                                    try {
-                                        airlock.wait();
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
+                        if (flagMap.get(airlock)) {
+                            synchronized (airlock) {
+                                try {
+                                    airlock.wait();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
                                 }
                             }
+                        }
 
-
-//                            synchronized (ac.get(airlock)) {
-                                ac.get(airlock).remove(0);
-//                            }
-//                            if(cargoFlagMap.get(airlock)){
-//                                ac.get(airlock).remove(0);
-//                            }
-
+                        if(cargoFlagMap.get(airlock)) {
+                            ac.get(airlock).remove(0);
+                        }
                     }
 //                    }
 //                    else {
@@ -124,7 +115,7 @@ public class MoonBase implements MoonBaseInterface {
 
                 if (ac.get(aa).isEmpty()) {
 //                        synchronized (ac.get(aa)){
-                            ac.get(aa).add(cargo);
+                    ac.get(aa).add(cargo);
 //                        }
 
                     if(!flagMap.get(aa)) {
@@ -149,9 +140,8 @@ public class MoonBase implements MoonBaseInterface {
 
             }
         }
-//        synchronized (ac.get(minAirlock)) {
-            ac.get(minAirlock).add(cargo);
-//        }
+
+        ac.get(minAirlock).add(cargo);
 
         if(!flagMap.get(minAirlock)) {
             synchronized (minAirlock){
@@ -209,6 +199,7 @@ public class MoonBase implements MoonBaseInterface {
                 return false;
             } else if (event == AirlockInterface.Event.CARGO_INSIDE) {
                 airlock.closeExternalAirtightDoors();
+                cargoFlagMap.put(airlock, Boolean.TRUE);
                 return false;
             } else if (event == AirlockInterface.Event.EXTERNAL_AIRTIGHT_DOORS_CLOSED) {
                 airlock.openInternalAirtightDoors();
@@ -235,6 +226,7 @@ public class MoonBase implements MoonBaseInterface {
                 return false;
             } else if (event == AirlockInterface.Event.CARGO_INSIDE) {
                 airlock.closeInternalAirtightDoors();
+                cargoFlagMap.put(airlock, Boolean.TRUE);
                 return false;
             } else if (event == AirlockInterface.Event.INTERNAL_AIRTIGHT_DOORS_CLOSED) {
                 airlock.openExternalAirtightDoors();
