@@ -19,6 +19,8 @@ public class MoonBase implements MoonBaseInterface {
     private Integer jj = new Integer(3);
     private HashMap<AirlockInterface, Boolean> flagMap = new HashMap<AirlockInterface, Boolean>();
     private HashMap<AirlockInterface, Boolean> cargoFlagMap = new HashMap<AirlockInterface, Boolean>();
+    int iter =0;
+    int bigiter =0;
 
     @Override
     public void setAirlocksConfiguration(List<AirlockInterface> airlocks) {
@@ -39,6 +41,8 @@ public class MoonBase implements MoonBaseInterface {
 
             new Thread(new Runnable() {
                 public void run() {
+                    PMO_SystemOutRedirect.println("bigiter: " + bigiter);
+                    PMO_SystemOutRedirect.println("iter: " + iter);
 //                    synchronized (airlock) {
 //                        try {
 //                            airlock.wait();
@@ -142,6 +146,7 @@ public class MoonBase implements MoonBaseInterface {
 //        Map<Integer, ArrayList<AirlockInterface>> mm = this.air.tailMap(cargo.getSize());
         Map<Integer, ArrayList<AirlockInterface>> mm = this.dummyair.tailMap(cargo.getSize());
 
+        bigiter++;
 
         for (Integer i : mm.keySet()) {
             for (AirlockInterface aa : mm.get(i)) {
@@ -165,6 +170,7 @@ public class MoonBase implements MoonBaseInterface {
                         synchronized (airlock){
                             try {
                                 ac.get(aa).put(cargo);
+                                iter++;
 
                             } catch (InterruptedException e) {
                                 continue;
@@ -221,6 +227,7 @@ public class MoonBase implements MoonBaseInterface {
         synchronized (airlock) {
             try {
                 ac.get(minAirlock).put(cargo);
+                iter++;
             } catch (InterruptedException e) {
 
             }
