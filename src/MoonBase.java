@@ -159,36 +159,14 @@ public class MoonBase implements MoonBaseInterface {
                             }
 
                         }
-//                        synchronized (ac){
-//                            try {
-//                                ac.get(aa).put(cargo);
-//
-//                            } catch (InterruptedException e) {
-//                                continue;
-//                            }
-//                        }
                         synchronized (ac){
                                 ac.get(aa).add(cargo);
                         }
                         synchronized (airlock){
-//                            try {
-//                                ac.get(aa).put(cargo);
-//
-//                            } catch (InterruptedException e) {
-//                                continue;
-//                            }
-
-//                                ac.get(aa).put(cargo);
-//                                PMO_SystemOutRedirect.println("cargo                      cargo: " + cargo);
-//                                PMO_SystemOutRedirect.println("notify on: " + airlock);
-//                                PMO_SystemOutRedirect.println("notify value: " + ac.get(airlock).isEmpty());
-//                                PMO_SystemOutRedirect.println("activeCount: " + java.lang.Thread.activeCount());
-//                                airlock.notify();
-                                if(!flagMap.get(airlock)) {
-                                    airlock.notify();
-                                }
-                                return;
-
+                            if(!flagMap.get(airlock)) {
+                                airlock.notify();
+                            }
+                            return;
 
                         }
 
@@ -202,6 +180,7 @@ public class MoonBase implements MoonBaseInterface {
                         }
                     }
 
+
             }
         }
         for (AirlockInterface as: air) {
@@ -211,36 +190,16 @@ public class MoonBase implements MoonBaseInterface {
             }
 
         }
-//        synchronized (ac){
-//            try {
-//                ac.get(minAirlock).put(cargo);
-//            } catch (InterruptedException e) {
-//
-//            }
-//        }
         synchronized (ac) {
 
                 ac.get(minAirlock).add(cargo);
 
         }
         synchronized (airlock){
-//            try {
-//                ac.get(minAirlock).put(cargo);
-//            } catch (InterruptedException e) {
-//
-//            }
-
-//                ac.get(minAirlock).put(cargo);
-//                PMO_SystemOutRedirect.println("cargo                      cargo: " + cargo);
-//                PMO_SystemOutRedirect.println("notify on: " + airlock);
-//                PMO_SystemOutRedirect.println("notify value: " + ac.get(airlock).isEmpty());
-//                PMO_SystemOutRedirect.println("activeCount: " + java.lang.Thread.activeCount());
-                if(!flagMap.get(airlock)) {
-                    airlock.notify();
-                }
-                return;
-
-
+            if(!flagMap.get(airlock)) {
+                airlock.notify();
+            }
+            return;
         }
 
     }
@@ -256,15 +215,16 @@ public class MoonBase implements MoonBaseInterface {
                 boolean reaction = eventReaction(event, cargo, airlock);
                 if (!reaction) {
                     flagMap.put(airlock, Boolean.TRUE);
-                    synchronized (airlock) {
                         while (flagMap.get(airlock)) {
-                            try {
-                                airlock.wait();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                            synchronized (airlock) {
+                                try {
+                                    airlock.wait();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
-                    }
+
                 } else {
                     flagMap.put(airlock, Boolean.FALSE);
                     cargoFlagMap.put(airlock, Boolean.TRUE);
