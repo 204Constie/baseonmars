@@ -51,15 +51,6 @@ public class MoonBase implements MoonBaseInterface {
                                 e.printStackTrace();
                             }
                         }
-                    if (flagMap.get(airlock)) {
-                        synchronized (airlock) {
-                            try {
-                                airlock.wait();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
 //                    }
 //                    initflag = false;
 //                    }
@@ -72,11 +63,10 @@ public class MoonBase implements MoonBaseInterface {
 //                            PMO_SystemOutRedirect.println("ac: " + ac);
 
 
-                            synchronized (airlock) {
 //                            PMO_SystemOutRedirect.println("22ac.get(airlock).get(0), airlock): " + ac.get(airlock).get(0) + " " + airlock);
 //                            synchronized (ac) {
                         airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
-                            }
+
 
                             CargoInterface c = ac.get(airlock).get(0);
 
@@ -141,8 +131,9 @@ public class MoonBase implements MoonBaseInterface {
                         synchronized (aa){
                             aa.notify();
                         }
-                        return;
+
                     }
+                    return;
 
                 } else {
                     if (minAirlock == null) {
@@ -166,8 +157,9 @@ public class MoonBase implements MoonBaseInterface {
             synchronized (minAirlock){
                 minAirlock.notify();
             }
-            return;
+
         }
+        return;
 
     }
 
