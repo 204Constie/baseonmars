@@ -13,7 +13,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class MoonBase implements MoonBaseInterface {
     private List<AirlockInterface> air = Collections.synchronizedList(new ArrayList<>());
 //    private SortedMap<Integer, ArrayList<AirlockInterface>> air = new TreeMap<Integer, ArrayList<AirlockInterface>>();
-    private ConcurrentSkipListMap<Integer, ArrayList<AirlockInterface>> dummyair = new ConcurrentSkipListMap<Integer, ArrayList<AirlockInterface>>();
+    private ConcurrentSkipListMap<Integer, List<AirlockInterface>> dummyair = new ConcurrentSkipListMap<Integer, List<AirlockInterface>>();
     private ConcurrentHashMap<AirlockInterface, List<CargoInterface>> ac = new ConcurrentHashMap<AirlockInterface, List<CargoInterface>>();
 
 //    private HashMap<AirlockInterface, Runnable> airthread = new HashMap<AirlockInterface, Runnable>();
@@ -30,7 +30,7 @@ public class MoonBase implements MoonBaseInterface {
 
         for (AirlockInterface airlock: air) {
 //            this.air.putIfAbsent(airlock.getSize(), new ArrayList<AirlockInterface>());
-            this.dummyair.putIfAbsent(airlock.getSize(), new ArrayList<>());
+            this.dummyair.putIfAbsent(airlock.getSize(), Collections.synchronizedList(new ArrayList<>()));
 //            ArrayList<AirlockInterface> tmpa = this.air.get(airlock.getSize());
             List<AirlockInterface> tmpa = Collections.synchronizedList(this.dummyair.get(airlock.getSize()));
             tmpa.add(airlock);
@@ -124,7 +124,7 @@ public class MoonBase implements MoonBaseInterface {
         AirlockInterface minAirlock = null;
 //        PMO_SystemOutRedirect.println("ac: " + air);
 //        Map<Integer, ArrayList<AirlockInterface>> mm = this.air.tailMap(cargo.getSize());
-        ConcurrentMap<Integer, ArrayList<AirlockInterface>> mm = this.dummyair.tailMap(cargo.getSize());
+        ConcurrentMap<Integer, List<AirlockInterface>> mm = this.dummyair.tailMap(cargo.getSize());
 
 
         for (Integer i : mm.keySet()) {
