@@ -61,13 +61,9 @@ public class MoonBase implements MoonBaseInterface {
 
                         if (c.getDirection() == Direction.INSIDE) {
                             flagMap.put(airlock, Boolean.TRUE);
-
-                            cargoFlagMap.put(airlock, Boolean.FALSE);
                             airlock.openExternalAirtightDoors();
                         } else {
                             flagMap.put(airlock, Boolean.TRUE);
-
-                            cargoFlagMap.put(airlock, Boolean.FALSE);
                             airlock.openInternalAirtightDoors();
                         }
 
@@ -82,9 +78,9 @@ public class MoonBase implements MoonBaseInterface {
                             }
                         }
 
-                        if (cargoFlagMap.get(airlock)) {
+//                        if (cargoFlagMap.get(airlock)) {
                             ac.get(airlock).remove(0);
-                        }
+//                        }
                     }
 //                    }
 //                    else {
@@ -157,7 +153,7 @@ public class MoonBase implements MoonBaseInterface {
             public void newAirlockEvent(AirlockInterface.Event event) {
 //                flagMap.put(airlock, Boolean.FALSE);
 
-                flagMap.put(airlock, Boolean.TRUE);
+//                flagMap.put(airlock, Boolean.TRUE);
                 boolean reaction = eventReaction(event, cargo, airlock);
                 if (!reaction) {
 
@@ -197,7 +193,7 @@ public class MoonBase implements MoonBaseInterface {
                 return false;
             } else if (event == AirlockInterface.Event.CARGO_INSIDE) {
                 airlock.closeExternalAirtightDoors();
-                cargoFlagMap.put(airlock, Boolean.TRUE);
+//                cargoFlagMap.put(airlock, Boolean.TRUE);
                 return false;
             } else if (event == AirlockInterface.Event.EXTERNAL_AIRTIGHT_DOORS_CLOSED) {
                 airlock.openInternalAirtightDoors();
@@ -224,7 +220,7 @@ public class MoonBase implements MoonBaseInterface {
                 return false;
             } else if (event == AirlockInterface.Event.CARGO_INSIDE) {
                 airlock.closeInternalAirtightDoors();
-                cargoFlagMap.put(airlock, Boolean.TRUE);
+//                cargoFlagMap.put(airlock, Boolean.TRUE);
                 return false;
             } else if (event == AirlockInterface.Event.INTERNAL_AIRTIGHT_DOORS_CLOSED) {
                 airlock.openExternalAirtightDoors();
