@@ -49,17 +49,18 @@ public class MoonBase implements MoonBaseInterface {
                                 }
                             }
                         }
-                        if(flagMap.get(airlock)){
-                            PMO_SystemOutRedirect.println("11ac.get(airlock).get(0), airlock): " + ac.get(airlock).get(0) + " " + airlock);
-                            airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
-                        }
+//                        if(flagMap.get(airlock)){
+//                            PMO_SystemOutRedirect.println("11ac.get(airlock).get(0), airlock): " + ac.get(airlock).get(0) + " " + airlock);
+//                            airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
+//                        }
                         while (!ac.get(airlock).isEmpty() && !flagMap.get(airlock)) {
 //                            PMO_SystemOutRedirect.println("ac: " + ac);
 
 //                            synchronized (airlock) {
-                            PMO_SystemOutRedirect.println("22ac.get(airlock).get(0), airlock): " + ac.get(airlock).get(0) + " " + airlock);
-                            airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
-//                            }
+//                            PMO_SystemOutRedirect.println("22ac.get(airlock).get(0), airlock): " + ac.get(airlock).get(0) + " " + airlock);
+                            synchronized (ac){
+                                airlock.setEventsListener(eventListenerInside(ac.get(airlock).get(0), airlock));
+                            }
 
                             CargoInterface c = ac.get(airlock).get(0);
 
@@ -77,8 +78,9 @@ public class MoonBase implements MoonBaseInterface {
                                 }
                             }
 
-                            synchronized (airlock) {
-                                while (flagMap.get(airlock)) {
+
+                            while (flagMap.get(airlock)) {
+                                synchronized (airlock) {
                                     try {
                                         airlock.wait();
                                     } catch (InterruptedException e) {
@@ -87,9 +89,10 @@ public class MoonBase implements MoonBaseInterface {
                                 }
                             }
 
-//                            synchronized (ac) {
+
+                            synchronized (ac) {
                                 ac.get(airlock).remove(0);
-//                            }
+                            }
 
                         }
                     }
