@@ -67,15 +67,12 @@ public class MoonBase implements MoonBaseInterface {
                                     flagMap.put(airlock, Boolean.TRUE);
                                 }
 
-                                
+
                             } else {
                                 if(!flagMap.get(airlock)){
                                     airlock.openInternalAirtightDoors();
                                     flagMap.put(airlock, Boolean.TRUE);
                                 }
-
-
-
                             }
 
                             synchronized (airlock) {
@@ -129,8 +126,9 @@ public class MoonBase implements MoonBaseInterface {
                             airlock.notify();
 
                         }
-                        return;
+
                     }
+                    return;
 
                 } else {
                     if (minAirlock == null) {
@@ -161,9 +159,9 @@ public class MoonBase implements MoonBaseInterface {
                 airlock.notify();
 
             }
-            return;
 
         }
+        return;
 
     }
 
