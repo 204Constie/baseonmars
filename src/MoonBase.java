@@ -34,7 +34,7 @@ public class MoonBase implements MoonBaseInterface {
             tmpa.add(airlock);
             this.ac.put(airlock, Collections.synchronizedList(new ArrayList<>()));
             this.flagMap.put(airlock, Boolean.FALSE);
-//            this.cargoFlagMap.put(airlock, Boolean.FALSE);
+            this.cargoFlagMap.put(airlock, Boolean.FALSE);
 
 
             new Thread(new Runnable() {
@@ -55,16 +55,10 @@ public class MoonBase implements MoonBaseInterface {
 //                        }
 //                    if (!ac.get(airlock).isEmpty() && !flagMap.get(airlock)){
                         while (!ac.get(airlock).isEmpty()) {
-                            while (flagMap.get(airlock)) {
-                                synchronized (airlock) {
-                                    try {
-                                        airlock.wait();
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            }
 //                            PMO_SystemOutRedirect.println("ac: " + ac);
+                            if(cargoFlagMap.get(airlock)){
+                                ac.get(airlock).remove(0);
+                            }
 
 //                            synchronized (airlock) {
 //                            PMO_SystemOutRedirect.println("22ac.get(airlock).get(0), airlock): " + ac.get(airlock).get(0) + " " + airlock);
@@ -89,19 +83,19 @@ public class MoonBase implements MoonBaseInterface {
                             }
 
 
-//                            while (flagMap.get(airlock)) {
-//                                synchronized (airlock) {
-//                                    try {
-//                                        airlock.wait();
-//                                    } catch (InterruptedException e) {
-//                                        e.printStackTrace();
-//                                    }
-//                                }
-//                            }
+                            while (flagMap.get(airlock)) {
+                                synchronized (airlock) {
+                                    try {
+                                        airlock.wait();
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
 
 
 //                            synchronized (ac) {
-                                ac.get(airlock).remove(0);
+//                                ac.get(airlock).remove(0);
 //                            }
 
                         }
@@ -206,7 +200,7 @@ public class MoonBase implements MoonBaseInterface {
 
                 } else {
                     flagMap.put(airlock, Boolean.FALSE);
-//                    cargoFlagMap.put(airlock, Boolean.TRUE);
+                    cargoFlagMap.put(airlock, Boolean.TRUE);
                 }
 
                 synchronized (airlock) {
