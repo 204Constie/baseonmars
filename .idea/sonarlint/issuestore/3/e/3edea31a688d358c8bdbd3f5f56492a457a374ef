@@ -1,0 +1,6 @@
+
+ssquid:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ
+2squid:S2386"Make this member "protected".(ÌğÂ™
+csquid:S00101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(”§È
+1squid:S1220""Move this file to a named package.
+Osquid:S1118":Add a private constructor to hide the implicit public one.(”§È

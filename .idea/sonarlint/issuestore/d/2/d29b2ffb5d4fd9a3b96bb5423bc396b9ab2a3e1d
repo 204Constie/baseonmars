@@ -1,7 +1,7 @@
 
-`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(§´Ÿ
-1squid:S1220""Move this file to a named package.
-Tsquid:S1161":Add the "@Override" annotation above this method signature(¼¦¹°ûÿÿÿÿ
+Ssquid:S1155">Use isEmpty() to check whether the collection is empty or not.(¤÷îÛ
 csquid:S00101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¬á¥„
 Ssquid:S1155">Use isEmpty() to check whether the collection is empty or not.(¤÷îÛ
-Ssquid:S1155">Use isEmpty() to check whether the collection is empty or not.(¤÷îÛ
+1squid:S1220""Move this file to a named package.
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(§´Ÿ
+Tsquid:S1161":Add the "@Override" annotation above this method signature(¼¦¹°ûÿÿÿÿ
