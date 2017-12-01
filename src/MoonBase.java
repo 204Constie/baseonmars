@@ -102,47 +102,47 @@ public class MoonBase implements MoonBaseInterface {
 //        PMO_SystemOutRedirect.println("ac: " + air);
 //        Map<Integer, ArrayList<AirlockInterface>> mm = this.air.tailMap(cargo.getSize());
         ConcurrentMap<Integer, List<AirlockInterface>> mm = this.dummyair.tailMap(cargo.getSize());
+        synchronized (ac) {
 
+            for (Integer i : mm.keySet()) {
+                for (AirlockInterface aa : mm.get(i)) {
+//                synchronized (ac) {
 
-        for (Integer i : mm.keySet()) {
-            for (AirlockInterface aa : mm.get(i)) {
-                synchronized (ac) {
-
-                if (ac.get(aa).isEmpty()) {
+                    if (ac.get(aa).isEmpty()) {
 //                        synchronized (ac.get(aa)){
-                    ac.get(aa).add(cargo);
+                        ac.get(aa).add(cargo);
 //                        }
 
-                    if (!flagMap.get(aa)) {
-                        synchronized (aa) {
-                            aa.notify();
+                        if (!flagMap.get(aa)) {
+                            synchronized (aa) {
+                                aa.notify();
+                            }
+
                         }
+                        return;
 
-                    }
-                    return;
-
-                } else {
-                    if (minAirlock == null) {
-                        minAirlock = aa;
                     } else {
-
-                        if (ac.get(aa).size() < ac.get(minAirlock).size()) {
+                        if (minAirlock == null) {
                             minAirlock = aa;
+                        } else {
+
+                            if (ac.get(aa).size() < ac.get(minAirlock).size()) {
+                                minAirlock = aa;
+                            }
                         }
                     }
+//            }
+
+
                 }
             }
-
-
-            }
-        }
 
 //        for(int i=0; i<ac.size(); i++){
             PMO_SystemOutRedirect.println(" - " + ac.get(minAirlock).size());
 //        }
 
-        ac.get(minAirlock).add(cargo);
-
+            ac.get(minAirlock).add(cargo);
+        }
         if(!flagMap.get(minAirlock)) {
             synchronized (minAirlock){
                 minAirlock.notify();
