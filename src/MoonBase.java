@@ -138,7 +138,7 @@ public class MoonBase implements MoonBaseInterface {
             }
 
 //        for(int i=0; i<ac.size(); i++){
-            PMO_SystemOutRedirect.println(" - " + ac.get(minAirlock).size());
+//            PMO_SystemOutRedirect.println(" - " + ac.get(minAirlock).size());
 //        }
 
             ac.get(minAirlock).add(cargo);
